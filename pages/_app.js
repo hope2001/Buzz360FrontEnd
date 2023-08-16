@@ -1,5 +1,6 @@
+import '@/styles/output.css'
 // import '@/styles/globals.css'
-import '@/styles/style.css'
+// import '@/styles/style.css'
 import { useEffect } from 'react'
 
 export default function App({ Component, pageProps }) {

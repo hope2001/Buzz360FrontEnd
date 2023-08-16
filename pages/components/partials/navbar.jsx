@@ -23,6 +23,7 @@ const NavBar = () => {
     {title:"Affiliés", path: "/affiliates"},
     {title:"Docs", path: "/docs"},
     {title:"Faq", path: "/faq"},
+    {title:"Agents", path: "/agents"},
   ]
 
   return (
@@ -35,7 +36,7 @@ const NavBar = () => {
     >
       <div className="max-w-[1170px] mx-auto px-4 sm:px-8 xl:px-0 lg:flex items-center justify-between relative">
         <div className="w-full lg:w-1/4 flex items-center justify-between">
-          <Link href="/" className="text-white font-bold text-lg">
+          <Link href="/" className="text-white font-bold text-2xl">
             {/* <img src="images/logo.svg" alt="Logo" /> */}
             DBerry
           </Link>
@@ -101,14 +102,14 @@ const NavBar = () => {
             </ul>
           </nav>
           <div className="flex items-center gap-6 mt-7 lg:mt-0">
-            <a href="signin.html" className="text-white text-sm hover:text-opacity-75">
-              Sign in
+            <a href="/signin" className="text-white text-sm hover:text-opacity-75">
+              Connection
             </a>
             <Link
-              href="signup.html"
+              href="signup"
               className="button-border-gradient relative rounded-lg text-white text-sm flex items-center gap-1.5 py-2 px-4.5 shadow-button hover:button-gradient-hover hover:shadow-none"
             >
-              Sign up
+              Inscription
               <svg className="mt-0.5" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
                   d="M14.4002 7.60002L9.2252 2.35002C9.0002 2.12502 8.6502 2.12502 8.4252 2.35002C8.2002 2.57502 8.2002 2.92502 8.4252 3.15002L12.6252 7.42502H2.0002C1.7002 7.42502 1.4502 7.67502 1.4502 7.97502C1.4502 8.27502 1.7002 8.55003 2.0002 8.55003H12.6752L8.4252 12.875C8.2002 13.1 8.2002 13.45 8.4252 13.675C8.5252 13.775 8.6752 13.825 8.8252 13.825C8.9752 13.825 9.1252 13.775 9.2252 13.65L14.4002 8.40002C14.6252 8.17502 14.6252 7.82503 14.4002 7.60002Z"
