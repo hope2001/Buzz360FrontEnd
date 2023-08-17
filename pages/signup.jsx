@@ -2,8 +2,11 @@ import Link from "next/link";
 import NavBar from "./components/partials/navbar";
 import { useForm } from 'react-hook-form';
 import { toast } from "react-toastify";
+import { AuthSys } from "@/Services/Requests/Auth";
+import { useRouter } from "next/navigation";
 
 function SignUp() {
+    const router = useRouter()
     const {
         register,
         handleSubmit,
@@ -12,7 +15,7 @@ function SignUp() {
         formState: { errors },
       } = useForm();
 
-      const onSubmit1 = async(data) => {
+      const onSubmit = async(data) => {
         console.log(data); // Handle form submission logic here
         let body;
         if (data.email !== "" && data.password !== "" && data.name !== "" && data.surname !== "") {
@@ -26,28 +29,23 @@ function SignUp() {
               };
   
               const response = await AuthSys.register(body)
-              // const response = await AuthSys.register({
-              //     name: data.name,
-              //     surname: data.surname,
-              //     email: data.email,
-              //     password: data.password,
-              //   })
-              console.log("---->",response.data);
+
+              console.log("---->",response);
               console.log(response.data);
               resetField();
-              setShow(!show);
               
-              toast(response.data, {
+              toast("Votre compte à été créé avec success", {
                   hideProgressBar: false,
                   autoClose: 5000,
                   type: "success",
                 });
+                router.push("/signin")
   
             } catch (error) {
   
               console.error('------->',error);
               console.error(error);
-              toast(error.response.data.message, {
+              toast("Something went wrong", {
                   hideProgressBar: false,
                   autoClose: 4000,
                   type: "error",
@@ -63,9 +61,9 @@ function SignUp() {
       };
   }
 
-  const onSubmit = async(data) => {
-    console.log(data); // Handle form submission logic here
-  }
+//   const onSubmit = async(data) => {
+//     console.log(data); // Handle form submission logic here
+//   }
 
     return (<>
         <NavBar />
@@ -188,8 +186,8 @@ function SignUp() {
                                             <input type="password" {...register("password", { required: true, maxLength: 20 })} placeholder="Mot de passe" className="w-full border border-white/[0.12] bg-transparent rounded-lg focus:border-purple pl-14.5 pr-4 py-3.5 font-medium outline-none focus-visible:shadow-none" />
                                             {errors.password && <span>Password is required</span>}
                                         </div>
-                                        <button type="submit" className="hero-button-gradient flex justify-center w-full rounded-lg py-3 px-7 text-white font-medium ease-in duration-300 hover:opacity-80">
-                                            Sign up with Databerry
+                                        <button type="submit" className=" bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500 mx-auto flex justify-center w-full rounded-lg py-3 px-7 text-white font-medium ease-in duration-300 hover:opacity-80">
+                                        S'Inscrire
                                         </button>
                                         <p className="text-center font-medium text-white mt-5">
                                             Vous avez déja un compte ?

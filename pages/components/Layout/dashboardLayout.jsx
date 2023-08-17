@@ -1,9 +1,9 @@
 import Sidebar from "../partials/sidebardash";
-
+import { ChakraProvider } from '@chakra-ui/react'
 function DashLayout({children}) {
     return ( 
 
-              
+        <ChakraProvider>             
 <main class="relative h-screen overflow-hidden bg-gray-100 dark:bg-gray-800">
     <div class="flex items-start justify-between">
         {/* <div class="relative hidden h-screen shadow-lg lg:block w-80">
@@ -120,7 +120,7 @@ function DashLayout({children}) {
                                         </svg>
                                     </button>
                                 </div>
-                                <div class="absolute right-0 w-56 mt-2 origin-top-right bg-white rounded-md shadow-lg dark:bg-gray-800 ring-1 ring-black ring-opacity-5">
+                                <div class="hidden absolute right-0 w-56 mt-2 origin-top-right bg-white rounded-md shadow-lg dark:bg-gray-800 ring-1 ring-black ring-opacity-5">
                                     <div class="py-1 " role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
                                         <a href="#" class="block px-4 py-2 text-md text-gray-700 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white dark:hover:bg-gray-600" role="menuitem">
                                             <span class="flex flex-col">
@@ -150,7 +150,7 @@ function DashLayout({children}) {
                     </div>
                 </div>
                 <div class="flex -mr-2 md:hidden">
-                    <button class="text-gray-800 dark:text-white hover:text-gray-300 inline-flex items-center justify-center p-2 rounded-md focus:outline-none">
+                    <button class="text-gray-800 dark:text-white hover:text-gray-300 inline-flex items-center justify-center p-2 rounded-md focus:outline-none bg-red-400">
                         <svg width="20" height="20" fill="currentColor" class="w-8 h-8" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
                             <path d="M1664 1344v128q0 26-19 45t-45 19h-1408q-26 0-45-19t-19-45v-128q0-26 19-45t45-19h1408q26 0 45 19t19 45zm0-512v128q0 26-19 45t-45 19h-1408q-26 0-45-19t-19-45v-128q0-26 19-45t45-19h1408q26 0 45 19t19 45zm0-512v128q0 26-19 45t-45 19h-1408q-26 0-45-19t-19-45v-128q0-26 19-45t45-19h1408q26 0 45 19t19 45z">
                             </path>
@@ -159,7 +159,7 @@ function DashLayout({children}) {
                 </div>
             </div>
         </div>
-        <div class="md:hidden">
+        <div class="hidden">
             <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
                 <a class="text-gray-300 hover:text-gray-800 dark:hover:text-white block px-3 py-2 rounded-md text-base font-medium" href="/#">
                     Home
@@ -215,7 +215,7 @@ function DashLayout({children}) {
                     </div>
                 </div> */}
             </header>
-            <div class="h-screen px-4 pb-24 overflow-auto md:px-6 bg-white rounded-lg">
+            <div class="h-screen px-2 pb-24 overflow-auto md:px-6 bg-whit rounded-lg pt-16">
                 {children}
                 {/* <h1 class="text-4xl font-semibold text-gray-800 dark:text-white">
                     Good afternoom, Charlie
@@ -700,7 +700,7 @@ function DashLayout({children}) {
         </div>
     </div>
 </main>
-
+</ChakraProvider>
     );
 }
 

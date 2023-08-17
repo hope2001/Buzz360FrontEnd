@@ -6,6 +6,8 @@ import { toast } from "react-toastify";
 import { useRouter } from 'next/navigation'
 import { usePathname } from 'next/navigation'
 import NavBar from "./components/partials/navbar";
+import { AuthSys } from "@/Services/Requests/Auth";
+import { Tokenn } from "@/Services/helpers/TokenKeeper";
 
 function SignIn() {
     const router = useRouter()
@@ -19,11 +21,71 @@ function SignIn() {
         formState: { errors },
       } = useForm();
 
-      const onSubmit = async(data) => {
-        console.log(data); // Handle form submission logic here
+      const onSubmit = async (data) => {
+        console.log(data);
+        // let body;
+        if (data.email !== "" && data.password !== "") {
+            let formDataToSend = new FormData();
+            formDataToSend.append('username', data.email);
+            formDataToSend.append('password', data.password);
+        
+        //   body = {
+        //     username : data.email,
+        //     password: data.password,
+        //   };
+          console.log(formDataToSend);
+          try{
+             const response = await AuthSys.Login(formDataToSend)
 
-        router.push("/")
-      }
+             console.log("---->",response);
+            //  if(response.status == 201){
+                console.log(response)
+                Tokenn.saveToken(response.data.access_token)
+                resetField()
+                toast("Vous êtes connecté", {
+                    hideProgressBar: false,
+                    autoClose: 5000,
+                    type: "info",
+                });
+            // }
+            // router.push("/")
+             
+ 
+           } catch (error) {
+ 
+             console.error('------->',error);
+             console.error(error);
+             toast(error.message, {
+                 hideProgressBar: false,
+                 autoClose: 4000,
+                 type: "error",
+               });
+           }
+    
+        //   accountService
+        //   .login(body)
+        //   .then((res) => {
+        //     accountService.saveToken(res.data.access_token);
+        //     resetField();
+        //     Router.push("/");
+            
+        //   })
+        //   .catch((error) => {
+        //     //  if(error.response) console.warning("test");
+        //     //  if(error.response) console.error(error.response.data.message);
+        //      if(error.response) toast(error.response.data.message, {
+        //       hideProgressBar: false,
+        //       autoClose: 4000,
+        //       type: "error",
+        //     });
+        //     //  if(error.response) alert(error.response.data.message) 
+        //     });
+    
+          // submit login form data to server here
+        }else{
+            alert('Tous les champs sont obligatoires')
+        }
+      };
     return (<>
         <NavBar />
         <main>
@@ -135,8 +197,8 @@ function SignIn() {
                                             <input type="password" {...register("password", { required: true })} placeholder="Mot de passe" className="w-full border border-white/[0.12] bg-transparent rounded-lg focus:border-purple pl-14.5 pr-4 py-3.5 font-medium outline-none focus-visible:shadow-none" />
                                             {errors.password && <span>password is required</span>}
                                         </div>
-                                        <button type="submit" className="hero-button-gradient flex justify-center w-full rounded-lg py-3 px-7 text-white font-medium ease-in duration-300 hover:opacity-80">
-                                            Se connecter à Databerry
+                                        <button type="submit" className=" bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500 mx-auto flex justify-center w-full rounded-lg py-3 px-7 text-white font-medium ease-in duration-300 hover:opacity-80">
+                                        Se connecter à Databerry
                                         </button>
                                         <p className="text-center font-medium text-white mt-5">
                                             Vous n'avez pas un compte?

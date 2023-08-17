@@ -38,7 +38,7 @@ const NavBar = () => {
         <div className="w-full lg:w-1/4 flex items-center justify-between">
           <Link href="/" className="text-white font-bold text-2xl">
             {/* <img src="images/logo.svg" alt="Logo" /> */}
-            DBerry
+            Databerry
           </Link>
 
           <button
