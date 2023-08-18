@@ -22,11 +22,13 @@ export function useFetchAgentData() {
   }
   
 
-  export function useAddResumeData() {
+  export function useAddAgent() {
     return useMutation(async (data) => {
       try {
-        console.log("add---->resume", data);
-      const res = await ResumeE.AddResume(data)
+        console.log("Create---->Agent", data);
+      const res = await agentReq.AddAgent(data)
+      console.log(res);
+      console.log("res");
       // toast("Demande enrégistrée avec success", { hideProgressBar: false, autoClose: 4000, type: 'success' })
       // toast("Demande en attente de validation", { hideProgressBar: false, autoClose: 7000, type: 'warning' })
   
@@ -34,7 +36,7 @@ export function useFetchAgentData() {
           
       } catch (error) {
           console.log(error)
-          console.log(error.response.data.message);
+          console.log(error.message);
       // toast(error.response.data.message, { hideProgressBar: false, autoClose: 4000, type: 'error' })
           
       }

@@ -4,7 +4,7 @@ function DashLayout({children}) {
     return ( 
 
         <ChakraProvider>             
-<main class="relative h-screen overflow-hidden bg-gray-100 dark:bg-gray-800">
+<main class="relative h-screen overflow-hidden bg-gray-100 dark:bg-gray-100">
     <div class="flex items-start justify-between">
         {/* <div class="relative hidden h-screen shadow-lg lg:block w-80">
             <div class="h-full bg-white dark:bg-gray-700">

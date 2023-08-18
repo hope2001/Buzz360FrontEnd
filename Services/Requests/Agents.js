@@ -19,7 +19,7 @@ let getAllAgent = () => {
 }
 let AddAgent = (rdata) => {
     console.log(rdata);
-    return Axios.post('/resumes',rdata)
+    return Axios.post('/agents',rdata)
 }
 
 /** 
