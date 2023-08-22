@@ -1,18 +1,21 @@
 import '@/styles/output.css'
 // import '@/styles/globals.css'
 // import '@/styles/style.css'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ChakraProvider } from '@chakra-ui/react'
 import "bootstrap-icons/font/bootstrap-icons.css";
+import LoadingP from './components/partials/loadingpage';
 
 export default function App({ Component, pageProps }) {
+  const [isload, setisload] = useState(true)
   useEffect(()=>{
     if(typeof window !== 'undefined'){
     // require('../styles/bundle')
   }
+  setisload(false)
   },[])
   const queryClient = new QueryClient();
 //   <Script defer src="bundle.js" />
@@ -23,13 +26,15 @@ export default function App({ Component, pageProps }) {
 // crossorigin="anonymous" />
 
 
+
   return <>
+  {isload ? <LoadingP/>:
   <QueryClientProvider client={queryClient}>
   {/* <ChakraProvider> */}
       <Component {...pageProps} />
       {/* </ChakraProvider> */}
       <ToastContainer />
-  </QueryClientProvider>
+  </QueryClientProvider>}
   </> 
   
 }

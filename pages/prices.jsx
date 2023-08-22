@@ -61,26 +61,26 @@ function Pricing() {
           writing capabilities, making the writing process more efficient,
           accurate, and enjoyable.
         </p>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7.5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7.5">
           {plans?.map((plan) => (
-            <div key={plan.name} class="pricing-item">
+            <div key={plan.name} className="pricing-item">
               <h3>{plan.name}</h3>
-              <div class="flex items-center gap-3.5">
-                <h2 class="font-bold text-custom-1">{plan.price}</h2>
-                <p class="font-medium">
+              <div className="flex items-center gap-3.5">
+                <h2 className="font-bold text-custom-1">{plan.price}</h2>
+                <p className="font-medium">
                   {plan.billed}
                 </p>
               </div>
-              <ul class="flex flex-col gap-4">
+              <ul className="flex flex-col gap-4">
                 {plan.features.map((feature) => (
-                  <li key={feature} class="flex items-center gap-5">
+                  <li key={feature} className="flex items-center gap-5">
                     <img src="/images/pricing-icon-04.svg" alt="icon" />
                     <span>{feature}</span>
                   </li>
                 ))}
               </ul>
               <Link href="#">Get the plan</Link>
-              <p class="text-sm text-center">
+              <p className="text-sm text-center">
                 No extra hidden charge
               </p>
             </div>

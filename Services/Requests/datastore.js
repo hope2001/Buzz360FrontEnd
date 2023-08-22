@@ -14,15 +14,12 @@ const apip = "http://localhost:3500"
  * @param {object} udata
  * @returns {Promise}
  */
-let getAllAgent = () => {
-    return Axios.get('/agents')
+let getDstore = () => {
+    return Axios.get('/datastore')
 }
-let getAllAgentlog = () => {
-    return Axios.get('/agentslog')
-}
-let AddAgent = (rdata) => {
+let AddDstore = (rdata) => {
     console.log(rdata);
-    return Axios.post('/agents',rdata)
+    return Axios.post('/datastore',rdata)
 }
 
 /** 
@@ -30,7 +27,7 @@ let AddAgent = (rdata) => {
  * @returns {Promise}
  */
 let trashAgent = (id) => {
-    return Axios.put('/resumes/'+id+'/trash')
+    return Axios.put('/datastore/'+id+'/trash')
 }
 
 /** 
@@ -46,6 +43,6 @@ let datatoia = (data) => {
     return Axios.post('/iadata',data)
 }
 
-export const agentReq = {
-    getAllAgent,trashAgent, AddAgent,datatoia,getAllAgentlog
+export const dstoreReq = {
+    getDstore,trashAgent, AddDstore,datatoia
 }

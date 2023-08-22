@@ -3,35 +3,18 @@ import { useMutation } from 'react-query';
 // import { ResumeE } from './../Requests/Resume';
 import { Tokenn } from '../helpers/TokenKeeper';
 import { toast } from "react-toastify";
-import { agentReq } from '../Requests/Agents';
-
-export function useFetchAgentlogData() {
-    return useQuery('agentlogData', async () => {
+// import { agentReq } from '../Requests/';
+import { dstoreReq } from '../Requests/datastore';
+export function useFetchDatastore() {
+    return useQuery('Dstore', async () => {
         if(Tokenn.checkToken){
             try {
-      const res = await agentReq.getAllAgentlog();
+      const res = await dstoreReq.getDstore();
       console.log(res)
       return res.data;
       } catch (err) {
     //   toast(err.response.data.message, { hideProgressBar: false, autoClose: 4000, type: 'error' })
-      console.log("Agentlog querry");
-      console.log(err);
-      console.log(err.message);
-      }
-        }
-    });
-  }
-  
-export function useFetchAgentData() {
-    return useQuery('agentData', async () => {
-        if(Tokenn.checkToken){
-            try {
-      const res = await agentReq.getAllAgent();
-      console.log(res)
-      return res.data;
-      } catch (err) {
-    //   toast(err.response.data.message, { hideProgressBar: false, autoClose: 4000, type: 'error' })
-      console.log("Agent querry");
+      console.log("Datastore querry");
       console.log(err);
       console.log(err.message);
       }
@@ -40,11 +23,11 @@ export function useFetchAgentData() {
   }
   
 
-  export function useAddAgent() {
+  export function useAddDatastore() {
     return useMutation(async (data) => {
       try {
-        console.log("Create---->Agent", data);
-      const res = await agentReq.AddAgent(data)
+        console.log("Create---->Datastore", data);
+      const res = await dstoreReq.AddDstore(data)
       console.log(res);
       console.log("res");
       // toast("Demande enrégistrée avec success", { hideProgressBar: false, autoClose: 4000, type: 'success' })

@@ -59,7 +59,7 @@ const Pricing = () => {
         {/* Pricing plan items */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7.5">
           {/* Starter plan */}
-          {price?.map(()=> <div className="wow fadeInUp rounded-3xl bg-dark relative z-20 overflow-hidden pt-12.5 pb-10 px-8 xl:px-10 pricing-item-border">
+          {price?.map((item, index)=> <div key={index} className="wow fadeInUp rounded-3xl bg-dark relative z-20 overflow-hidden pt-12.5 pb-10 px-8 xl:px-10 pricing-item-border">
             <span className="absolute right-9 top-9"><img src="images/pricing-icon-01.svg" alt="icon" /></span>
             <h3 className="font-semibold text-heading-6 text-white mb-5.5">
               Starter

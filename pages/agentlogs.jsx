@@ -15,31 +15,50 @@ import {
   MenuOptionGroup,
   MenuDivider,
 } from '@chakra-ui/react'
-import { useFetchAgentData,useTrashResumeData } from '../Services/Query/agentquery';
-function Agents() {
+import { Select } from '@chakra-ui/react'
+import { useFetchAgentData,useFetchAgentlogData,useTrashResumeData } from '../Services/Query/agentquery';
+function AgentLogs() {
     useEffect(() => {
 
     }, []);
 
     const {
         data: AgentList,
-        isLoading: isLoadingResumeData,
-        error: errorResumeData,
+        isLoading: isLoading,
+        error: error,
         refetch
       } = useFetchAgentData();
+    const {
+        data: AgentlogList,
+        isLoading: isLoadingResumeData,
+        error: errorResumeData,
+        // refetch
+      } = useFetchAgentlogData();
     return (
         <DashLayout>
 
 <div className="container"> 
     <div className="flex justify-between p-3"> 
     <Heading noOfLines={2}>
-            Agents
+            AgentsLog
             </Heading>
 
-            <Link href="/addagent" >
+            {/* <Link href="/addagent" >
         <Button colorScheme='purple' variant='solid'>
         <i className="bi bi-plus-circle mx-1"> </i>Nouvel Agent
-  </Button></Link>
+  </Button></Link>  */}
+  <div className="">
+  <Select   bg='purple-500'
+  borderColor='purple-500'
+  color='purple' placeholder='Selectionner un agent'>
+    {
+        AgentList?.map((agt, index)=>(
+
+            <option className="bg-gray-500" key={index} value={agt.id}> {agt.name} </option>
+        ))
+    }
+</Select></div>
+
     </div>
 </div>
 
@@ -54,20 +73,20 @@ function Agents() {
                                 <table className="min-w-max w-full table-auto rounded-xl overflow-hidden">
                                     <thead>
                                         <tr className="bg-gray-800 text-gray-100 uppercase text-sm leading-normal">
-                                            <th className="py-3 px-6 text-left">Libelé</th>
-                                            <th className="py-3 px-6 text-left">Description</th>
-                                            <th className="py-3 px-6 text-center">Model</th>
-                                            <th className="py-3 px-6 text-center">Temperature</th>
-                                            <th className="py-3 px-6 text-center">Status</th>
+                                            <th className="py-3 px-6 text-left">Date</th>
+                                            <th className="py-3 px-6 text-left">Ia</th>
+                                            <th className="py-3 px-6 text-center">Humain</th>
+                                            <th className="py-3 px-6 text-center">Message</th>
+                                            <th className="py-3 px-6 text-center">Agent</th>
                                             <th className="py-3 px-6 text-center">Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody className="text-gray-600 text-sm font-light">
-                                        {!AgentList &&<tr className="w-full p-1 bg-blue-200 ">
-                                            <td colSpan="6" className="p-3 bg-gray-300 font-bold text-center w-full"> Aucun agent disponible.</td>
+                                        {(!AgentlogList || AgentlogList.length <=0) &&<tr className="w-full p-1 bg-blue-200 ">
+                                            <td colSpan="6" className="p-3 bg-gray-300 font-bold text-center w-full"> Les conversations avec vos Agents s'affichent ici .</td>
                                             
                                         </tr>}
-                                        {AgentList?.map((agent, index)=>(
+                                        {AgentlogList?.map((agent, index)=>(
                                             <tr key={index} className="border-b border-gray-200 hover:bg-gray-100 w-full">
                                             <td className="py-3 px-6 text-left whitespace-nowrap">
                                                 <div className="flex items-center">
@@ -163,4 +182,4 @@ function Agents() {
     );
 }
 
-export default Agents
+export default AgentLogs;

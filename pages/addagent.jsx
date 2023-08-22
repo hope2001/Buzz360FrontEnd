@@ -10,7 +10,12 @@ import { useToast } from '@chakra-ui/react'
 import { useFetchAgentData,useAddAgent } from '../Services/Query/agentquery';
 import { useForm } from "react-hook-form";
 import { useState } from "react";
+import { useRouter } from 'next/navigation'
+import { useFetchDatastore } from "@/Services/Query/datastorequery";
+import axios from "axios";
+import { collectionName, iaapi } from "@/Services/Requests/env";
 function AddAgents() {
+  const router = useRouter()
   const toast = useToast()
   const [isLoading, setisLoading] = useState(false)
     useEffect(() => {
@@ -22,14 +27,20 @@ function AddAgents() {
       formState: { errors },
       handleSubmit,
     } = useForm()
-
+    const { mutateAsync, isLoading: isLoadingAddAgent, error: errorAddAgent } = useAddAgent();
     const {
         data: AgentList,
         isLoading: isLoadingResumeData,
         error: errorResumeData,
         refetch
       } = useFetchAgentData();
-      const { mutateAsync, isLoading: isLoadingAddAgent, error: errorAddAgent } = useAddAgent();
+
+      const {
+        data: DsList,
+        isLoading: isLoadingDst,
+        error: errorDst,
+      } = useFetchDatastore();
+
       // const onSubmit = async (data) => {
       //   console.log(data);
       //  let body = {
@@ -60,14 +71,27 @@ function AddAgents() {
 
           }
 
-          await mutateAsync(body);
-          toast({
+          const response = await mutateAsync(body);
+
+          
+          if (response ){
+            toast({
             title: 'Agent '+data.name+' en route 😎.',
-            description: "Vous avez créer avec success votre agent",
+            description: "Votre agent est initialisé avec success.",
             status: 'success',
             duration: 9000,
             isClosable: true,
           })
+          router.push("/agents")
+        }else{
+          toast({
+            title: 'Something went wrong',
+            description: "erreur réseau ou serveur",
+            status: 'error',
+            duration: 9000,
+            isClosable: true,
+          })
+        }
         }
         catch (error) 
         {
@@ -103,81 +127,80 @@ function AddAgents() {
 </div>
 
             {/* <!-- component --> */}
-            <div class="sm:px-1 w-full ">
+            <div className="sm:px-1 w-full ">
              
                 {/* <!-- component --> */}
                 {/* <!-- component --> */}
 {/* <script src="https://cdn.tailwindcss.com"></script> */}
-{/* <body class="bg-gray-100"> */}
-  <div class="container mx-auto py-8">
-    <h1 class="text-2xl font-bold mb-6 text-center"></h1>
-    <form class="w-full max-w-sm mx-auto bg-white p-8 rounded-md shadow-md" onSubmit={handleSubmit(onSubmit)}>
-      <div class="mb-4">
-        <label class="block text-gray-700 text-sm font-bold mb-2" for="name"> Nom </label>
-        <input {...register("name", { required: true })} class={errors.name ?" bg-red-100 text-white w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500": "w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500"}
+{/* <body className="bg-gray-100"> */}
+  <div className="container mx-auto py-8">
+    <h1 className="text-2xl font-bold mb-6 text-center"></h1>
+    <form className="w-full max-w-sm mx-auto bg-white p-8 rounded-md shadow-md" onSubmit={handleSubmit(onSubmit)}>
+      <div className="mb-4">
+        <label className="block text-gray-700 text-sm font-bold mb-2" for="name"> Nom </label>
+        <input {...register("name", { required: true })} className={errors.name ?" bg-red-100 text-white w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500": "w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500"}
           type="text" id="name"  placeholder="Alpha WebChat"/>
         {/* <span className="bg-red-300 text-center text-white text-bold w-full p-2 mt-5"> Le nom de l'agent est important</span> */}
           {errors.name && <span className="text-sm"> Donnée requise</span>}
       </div>
-      <div class="mb-4">
-        <label class="block text-gray-700 text-sm font-bold mb-2" for="description">Description</label>
-        <input class={errors.description ?" bg-red-100 text-white w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500": "w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500"}
+      <div className="mb-4">
+        <label className="block text-gray-700 text-sm font-bold mb-2" for="description">Description</label>
+        <input className={errors.description ?" bg-red-100 text-white w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500": "w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500"}
           type="text" id="description" {...register("description", { required: true })} placeholder=" Eg: This agent is for survey"/>
           {errors.description && <span className="text-sm"> Donnée requise</span>}
       </div>
-      <div class="mb-4">
-        <label class="block text-gray-700 text-sm font-bold mb-2" for="email">Model</label>
-        {/* <input class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500"
+      <div className="mb-4">
+        <label className="block text-gray-700 text-sm font-bold mb-2" for="email">Model</label>
+        {/* <input className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500"
           type="email" id="email" name="email" placeholder="john@example.com"/> */}
-          <select {...register("model_name", { required: true })} id="countries" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+          <select {...register("model_name", { required: true })} id="countries" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                 <option defaultValue={"GPT-3.5"}>GPT-3.5</option>
                 <option value="GPT-4">GPT-4</option>
         </select>
         {errors.model_name && <span className="text-sm"> Donnée requise</span>}
       </div>
-      <div class="mb-4">
-        <label class="block text-gray-700 text-sm font-bold mb-2" for="email">Température</label>
-        <input {...register("temperature", { required: true })}  id="default-range" type="range" step="0.1" min="0" max="10" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700" title="hello"/>
+      <div className="mb-4">
+        <label className="block text-gray-700 text-sm font-bold mb-2" for="email">Température</label>
+        <input {...register("temperature", { required: true })}  id="default-range" type="range" step="0.1" min="0" max="10" className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700" title="hello"/>
         {errors.temperature && <span className="text-sm"> Donnée requise</span>}
       </div>
-      <div class="mb-4">
-        <label class="block text-gray-700 text-sm font-bold mb-2" for="password">Prompt</label>
-        <input class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500"
+      <div className="mb-4">
+        <label className="block text-gray-700 text-sm font-bold mb-2" for="password">Prompt</label>
+        <input className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500"
           type="text" id="password" {...register("prompt", { required: true })}  defaultValue="As a customer support agent, please provide a helpful and professional response to the user's question or issue." placeholder=""/>
           {errors.prompt && <span className="text-sm"> Donnée requise</span>}
       </div>
 
-      <div class="mb-4">
-        <label class="block text-gray-700 text-sm font-bold mb-2" for="email">Prompt type</label>
-        {/* <input class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500"
+      <div className="mb-4">
+        <label className="block text-gray-700 text-sm font-bold mb-2" for="email">Prompt type</label>
+        {/* <input className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500"
           type="email" id="email" name="email" placeholder="john@example.com"/> */}
-          <select {...register("prompt_type", { required: true })} id="countries" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+          <select {...register("prompt_type", { required: true })} id="countries" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-blue-300 dark:border-gray-600 dark:placeholder-gray-700 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                 <option defaultValue={"generique"}>Générique</option>
                 <option value="standard">Standard-4</option>
         </select>
         {errors.prompt_type && <span className="text-sm"> Donnée requise</span>}
       </div>
-      <div class="mb-4">
-        <label class="block text-gray-700 text-sm font-bold mb-2" for="email">Datasource</label>
-        {/* <input class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500"
+      <div className="mb-4">
+        <label className="block text-gray-700 text-sm font-bold mb-2" for="email">Datasource</label>
+        {/* <input className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500"
           type="email" id="email" name="email" placeholder="john@example.com"/> */}
-          <select {...register("datasource_id", { required: true })} id="countries" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                <option selected>Choose a country</option>
-                <option value="US">United States</option>
-                <option value="CA">Canada</option>
-                <option value="FR">France</option>
-                <option value="DE">Germany</option>
+          <select {...register("datasource_id", { required: true })} id="countries" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-blue-300 dark:border-gray-600 dark:placeholder-gray-700 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+               {DsList?.map((dst, index)=>(
+                  <option key={index} value={dst.id}> {dst.label} </option>
+               ))}
+                <option selected>Choisisez une source</option>
         </select>
         {errors.datasource_id && <span className="text-sm"> Donnée requise</span>}
       </div>
-      {/* <div class="mb-4">
-        <label class="block text-gray-700 text-sm font-bold mb-2" for="confirm-password">Confirm Password</label>
-        <input class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500"
+      {/* <div className="mb-4">
+        <label className="block text-gray-700 text-sm font-bold mb-2" for="confirm-password">Confirm Password</label>
+        <input className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500"
           type="password" id="confirm-password" name="confirm-password" placeholder="********"/>
       </div> */}
 
       <button
-        class="w-full bg-gray-600 text-white text-sm font-bold py-2 px-4 rounded-md hover:bg-gray-700 transition duration-300"
+        className="w-full bg-blue-600 text-white text-sm font-bold py-2 px-4 rounded-md hover:bg-gray-700 transition duration-300"
         type="submit"> {isLoading? <Spinner color='white w-24' className="m-auto" /> : <span>Sauvegarder</span> }   </button>
     </form>
   </div>

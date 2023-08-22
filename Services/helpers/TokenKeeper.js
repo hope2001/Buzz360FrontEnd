@@ -31,6 +31,8 @@ const getToken1 = ()=>{
 const dropToken = ()=>{
     if (typeof window !== 'undefined') {
     localStorage.removeItem("360BzTKn")}
+    
+    console.log("token droped");
 }
 
 export const Tokenn = {
