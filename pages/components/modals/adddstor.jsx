@@ -35,10 +35,6 @@ export function ManualClose() {
     setFileInputs(updatedFileInputs);
   };
 
-
-
-
-
     const { isOpen, onOpen, onClose } = useDisclosure()
 
     const router = useRouter()
@@ -56,7 +52,7 @@ export function ManualClose() {
       } = useForm()
       const { mutateAsync, isLoading: isLoadingAddAgent, error: errorAddAgent } = useAddDatastore();
 
-      const onSubmit = async (data) => {
+      const onSubmit1 = async (data) => {
         console.log(data);
     //     try {
     //       console.log("Data", data);
@@ -135,6 +131,58 @@ export function ManualClose() {
     
     //     setisLoading(false)
       };
+
+
+      
+      const onSubmit = async (data) => {
+
+        try {
+          console.log("Data", data);
+          setisLoading(true)
+          let body = {
+            label: data.label,
+            description: data.description,
+            visibility: data.visibility
+          }
+
+          const response = await mutateAsync(body);
+
+          
+          if (response ){
+            toast({
+            title: 'Datastore '+data.label+' créer 😎.',
+            description: "Votre Datastore est initialisé avec success.",
+            status: 'success',
+            duration: 9000,
+            isClosable: true,
+          })
+          router.push("/datastore")
+        }else{
+          toast({
+            title: 'Something went wrong',
+            description: "erreur réseau ou serveur",
+            status: 'error',
+            duration: 9000,
+            isClosable: true,
+          })
+        }
+        }
+        catch (error) 
+        {
+          setisLoading(false);
+          console.log(error)
+          toast({
+            title: 'Something went wrong',
+            description: error.message,
+            status: 'error',
+            duration: 9000,
+            isClosable: true,
+          })
+        }
+    
+        setisLoading(false)
+      };
+
   
     return (
       <>
@@ -151,36 +199,48 @@ export function ManualClose() {
             <ModalBody pb={6}>
             <form className="w-full max-w-s mx-auto bg-white p-8 " onSubmit={handleSubmit(onSubmit)}>
       <div className="mb-4">
-        <label className="block text-gray-700 text-sm font-bold mb-2" for="name"> Titre </label>
+        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name"> Titre </label>
         <input {...register("label", { required: true })} className={errors.name ?" bg-red-100 text-white w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500": "w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500"}
           type="text" id="name"  placeholder="Alpha WebChat"/>
         {/* <span className="bg-red-300 text-center text-white text-bold w-full p-2 mt-5"> Le nom de l'agent est important</span> */}
           {errors.label && <span className="text-sm"> Donnée requise</span>}
       </div>
       <div className="mb-4">
-        <label className="block text-gray-700 text-sm font-bold mb-2" for="description">Description</label>
+        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="description">Description</label>
         <input className={errors.description ?" bg-red-100 text-white w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500": "w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500"}
-          type="text" id="description" {...register("description", { required: true })} placeholder=" Eg: This agent is for survey"/>
+          type="text" id="description" {...register("description", { required: true })} placeholder=" Eg: This agent is htmlFor survey"/>
           {errors.description && <span className="text-sm"> Donnée requise</span>}
       </div>
-      <div className="mb-4">
-        <label className="block text-gray-700 text-sm font-bold mb-2 flex justify-between" for="email"> 
+      {/* <div className="mb-4">
+        <label className="block text-gray-700 text-sm font-bold mb-2 flex justify-between" htmlFor="email"> 
         <span>Type</span> 
         <span onClick={addFileInput} className='bi bi-plus-circle-fill text-purple text-xl'></span> 
         </label>
-        {/* <input className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500"
-          type="email" id="email" name="email" placeholder="john@example.com"/> */}
-          <select {...register("type", { required: true })} id="countries" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+
+          <select onChange={(e)=> alert(e.value)} {...register("type", { required: true })} id="countries" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                 <option >Sélectionnez le type de donnée</option>
                 <option onClick={()=> setTypee("file")} value={"file"}>Fichier</option>
                 <option onClick={()=> setTypee("text")} value="text">Text</option>
                 <option onClick={()=> setTypee("text")} value="text">Lien web</option>
         </select>
         {errors.type && <span className="text-sm"> Donnée requise</span>}
-      </div>
-<span className={fileInputs.length >0 && "bg-gray-100 p-2 rounded-sm flex flex-col w-full"}>
+      </div> */}
+
+      {/* <div className="mb-4">
+        <label className="block text-gray-700 text-sm font-bold mb-2 flex justify-between" htmlFor={'source'}>
+          <span>Source</span>
+          
+        <span className='bi bi-trash-fill text-red-500 text-xl'></span> 
+        </label>
+        <input className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500"
+          type={typee} id={'source'} {...register("data")}  />
+          {errors.data && <span className="text-sm"> Donnée requise</span>}
+      </div> */}
+
+
+{/* <span className={fileInputs.length >0 && "bg-gray-100 p-2 rounded-sm flex flex-col w-full"}>
 {     fileInputs.map((input, index) => ( <div key={index} className="mb-4">
-        <label className="block text-gray-700 text-sm font-bold mb-2 flex justify-between" for={'source'+index}>
+        <label className="block text-gray-700 text-sm font-bold mb-2 flex justify-between" htmlFor={'source'+index}>
           <span>Source {index+1} </span>
           
         <span onClick={() => removeFileInput(index)} className='bi bi-trash-fill text-red-500 text-xl'></span> 
@@ -188,12 +248,10 @@ export function ManualClose() {
         <input className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500"
           type={typee} id={'source'+index} {...register("data"+index)}  />
           {errors.data && <span className="text-sm"> Donnée requise</span>}
-      </div>))}</span>
+      </div>))}</span> */}
 
       <div className="mb-4">
-        <label className="block text-gray-700 text-sm font-bold mb-2" for="email">Status</label>
-        {/* <input className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500"
-          type="email" id="email" name="email" placeholder="john@example.com"/> */}
+        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">Status</label>
           <select {...register("visibility", { required: true })} id="countries" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                 <option value={true} defaultValue={true}>Visible</option>
                 <option value={false}>Inactif</option>

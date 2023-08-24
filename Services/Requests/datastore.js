@@ -22,6 +22,22 @@ let AddDstore = (rdata) => {
     return Axios.post('/datastore',rdata)
 }
 
+let AddFtoDstore = (rdata) => {
+    console.log(rdata);
+    return Axios.post('/datastore/upload',rdata,{
+        headers: {
+          "Content-Type": "multipart/form-data",
+          
+        },
+      })
+}
+
+
+let AddDstorefile = (rdata) => {
+    console.log(rdata);
+    return Axios.post('/datastorefile',rdata)
+}
+
 /** 
  * @param {object} udata
  * @returns {Promise}
@@ -44,5 +60,5 @@ let datatoia = (data) => {
 }
 
 export const dstoreReq = {
-    getDstore,trashAgent, AddDstore,datatoia
+    getDstore,trashAgent, AddDstore,datatoia,AddFtoDstore,AddDstorefile
 }

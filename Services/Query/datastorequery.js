@@ -5,6 +5,8 @@ import { Tokenn } from '../helpers/TokenKeeper';
 import { toast } from "react-toastify";
 // import { agentReq } from '../Requests/';
 import { dstoreReq } from '../Requests/datastore';
+
+
 export function useFetchDatastore() {
     return useQuery('Dstore', async () => {
         if(Tokenn.checkToken){
@@ -44,6 +46,27 @@ export function useFetchDatastore() {
   
     });
   }
+  export function useAddFileToDatastore() {
+    return useMutation(async (data) => {
+      try {
+        console.log("Upload file to ---->Datastorefile", data);
+      const res = await dstoreReq.AddDstorefile(data)
+      console.log(res);
+      console.log("======>res");
+      // toast("Demande enrégistrée avec success", { hideProgressBar: false, autoClose: 4000, type: 'success' })
+      // toast("Demande en attente de validation", { hideProgressBar: false, autoClose: 7000, type: 'warning' })
+  
+      return res
+          
+      } catch (error) {
+          console.log(error)
+          console.log(error.message);
+      // toast(error.response.data.message, { hideProgressBar: false, autoClose: 4000, type: 'error' })
+          
+      }
+  
+    });
+  }
 
   export function useAddDataForIAResume() {
     return useMutation(async (data) => {
@@ -57,7 +80,7 @@ export function useFetchDatastore() {
           
       } catch (error) {
           console.log(error)
-          console.log(error.response.data.message);
+          console.log(error.message);
       // toast(error.response.data.message, { hideProgressBar: false, autoClose: 4000, type: 'error' })
           
       }

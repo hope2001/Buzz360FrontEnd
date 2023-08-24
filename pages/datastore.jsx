@@ -2,7 +2,7 @@ import NavBar from "./components/partials/navbar";
 import Link from "next/link"
 import Sidebar from "./components/partials/sidebardash";
 import DashLayout from "./components/Layout/dashboardLayout";
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { Button, ButtonGroup } from '@chakra-ui/react'
 import { Heading } from '@chakra-ui/react'
 
@@ -19,11 +19,16 @@ import {
 import { useFetchDatastore } from "@/Services/Query/datastorequery";
 import AddDatastore from "./components/modals/adddatastore";
 import { ManualClose } from "./components/modals/adddstor";
+import AddDstorefile from "./components/modals/adddatastorefile";
+import AddDstoreLink from "./components/modals/addLinkstorefile";
+// import { adddatastorefile } from "./components/modals/adddatastorefile";
 // import { useFetchDatastore,useTrashResumeData } from '../Services/Query/agentquery';
-function Datastore() {
-    useEffect(() => {
 
-    }, []);
+function Datastore() {
+    const [showaddFile, setShowAddfile] = useState(false);
+    const [showaddLink, setShowAddLink] = useState(false);
+    const [agent, setAgent] = useState({});
+
 
     const {
         data: DsList,
@@ -109,11 +114,19 @@ function Datastore() {
                                                 <MenuList> 
                                                     <MenuGroup className="bg-purple-200 rounded-md" title='Options'>
                                                     <Link href="/"><MenuItem> <i className="bi bi-folder-x  mr-2"></i>  Modifier</MenuItem></Link>
+                                                    <MenuItem onClick={()=>(setShowAddLink(!showaddLink))} > <i className="bi bi-link mr-2"></i>  Ajouter une page Web</MenuItem>
+                                                    <MenuItem onClick={()=>(setShowAddfile(!showaddFile),setAgent(agent))} > <i className="bi bi-file-earmark-plus-fill mr-2"></i>  Ajouter Fichier</MenuItem>
                                                     
-                                                    <MenuItem> <i className="bi bi-trash3 mr-2"></i>  Supprimer </MenuItem>
+                                                    <MenuItem> <span className="bg-red-400 w-full p-2 text-white rounded-md"> <i className="bi bi-trash3 mr-2"></i>  Supprimer</span> </MenuItem>
+                                                   <MenuItem onClick={()=> alert('hope')} >  <span className="bg-purple-600 w-full p-2 text-white rounded-md"> <i className="bi bi-plugin mr-2"></i>  Soumettre </span> </MenuItem> 
                                                     </MenuGroup>
                                                 </MenuList>
                                                 </Menu>
+
+                                                {/* <AdddatastoreFile show={showaddFile} setShow={setShowAddfile} /> */}
+                                                {/* <adddatastorefile/> */}
+                                                {/* <adddatastorefile  show={showaddFile} setShow={setShowAddfile}/> */}
+                                               
                                                 {/* <div className="flex item-center gap-4">
                                                     <div className="transform hover:text-purple-500 hover:scale-110">
                                                         <i className="bi bi-eye"></i>
@@ -139,7 +152,8 @@ function Datastore() {
                     </div>
                 </div>
             </div>
-                                            {/* <AddDatastore/> */}
+            <AddDstorefile data={agent} show={showaddFile} setShow={setShowAddfile} />
+            <AddDstoreLink data={agent} show={showaddLink} setShow={setShowAddLink}/>        {/* <AddDatastore/> */}
                                            
         </DashLayout>
 
