@@ -123,7 +123,7 @@ function Agents() {
                                                     </MenuGroup>
                                                     <MenuDivider />
                                                     <MenuGroup className="bg-purple-200 rounded-md" title='Config'>
-                                                    <MenuItem><i className="bi bi-chat-left-text mr-2"></i> Chat</MenuItem>
+                                                    <Link href={'/Chat/'+agent.datastore_id} ><MenuItem><i className="bi bi-chat-left-text mr-2"></i> Chat</MenuItem></Link>
                                                     <MenuItem> <i className="bi bi-balloon mr-2"></i> Déployer </MenuItem>
                                                     <MenuItem> <i className="bi bi-sliders mr-2"></i> Setting </MenuItem>
                                                     </MenuGroup>

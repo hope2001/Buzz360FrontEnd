@@ -67,7 +67,7 @@ function AddAgents() {
             temperature: data.temperature,
             model_name: data.model_name,
             interface_config: '{1:2,2:1}',
-            datastore_id: 1,
+            datastore_id: data.datasource_id
 
           }
 

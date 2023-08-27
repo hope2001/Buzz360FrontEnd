@@ -17,6 +17,9 @@ const apip = "http://localhost:3500"
 let getDstore = () => {
     return Axios.get('/datastore')
 }
+let getoneDstore = (id) => {
+    return Axios.get('/datastore/'+id)
+}
 let AddDstore = (rdata) => {
     console.log(rdata);
     return Axios.post('/datastore',rdata)
@@ -60,5 +63,5 @@ let datatoia = (data) => {
 }
 
 export const dstoreReq = {
-    getDstore,trashAgent, AddDstore,datatoia,AddFtoDstore,AddDstorefile
+    getDstore,trashAgent, AddDstore,datatoia,AddFtoDstore,AddDstorefile,getoneDstore
 }

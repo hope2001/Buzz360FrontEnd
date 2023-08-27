@@ -16,7 +16,7 @@ function AddDstorefile({data,show, setShow}) {
   const {
     register,
     formState: { errors },
-    handleSubmit,
+    handleSubmit,reset
   } = useForm()
   const { mutateAsync, isLoading: isLoadingAddAgent, error: errorAddAgent } = useAddFileToDatastore();
 //   const { mutateAsync, isLoading: isLoadingAddAgent, error: errorAddAgent } = useAddFileToDatastore();
@@ -44,11 +44,26 @@ const onSubmit = async (datas) => {
             path: response.data.path,
             datastore_id: data.id
           }
-          await mutateAsync(bod)
+        //   await mutateAsync(bod)
         //   à revoir urgement 
+        toast({
+            title: 'Fichier(s) ajouté avec success à la base '+data.data+' 😎.',
+            description: "Files uploaded with success.",
+            status: 'success',
+            duration: 9000,
+            isClosable: true,
+          })
+          reset()
       }
     } catch (error) {
       console.error('Error uploading files:', error);
+      toast({
+        title: 'Something went wrong',
+        description: "erreur réseau ou serveur",
+        status: 'error',
+        duration: 9000,
+        isClosable: true,
+      })
     }
   };
 

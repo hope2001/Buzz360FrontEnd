@@ -48,7 +48,7 @@ export function ManualClose() {
       const {
         register,
         formState: { errors },
-        handleSubmit,
+        handleSubmit,reset
       } = useForm()
       const { mutateAsync, isLoading: isLoadingAddAgent, error: errorAddAgent } = useAddDatastore();
 
@@ -133,7 +133,7 @@ export function ManualClose() {
       };
 
 
-      
+
       const onSubmit = async (data) => {
 
         try {
@@ -146,16 +146,19 @@ export function ManualClose() {
           }
 
           const response = await mutateAsync(body);
+          console.log(response);
 
-          
-          if (response ){
+          if (response){ 
+            const responseapi = await axios.post(iaapi + '/create_index_payload/'+ collectionName +'/'+ response?.data);
+          if (response && responseapi ){
             toast({
-            title: 'Datastore '+data.label+' créer 😎.',
+            title: 'Datastore '+data.label+' créé 😎.',
             description: "Votre Datastore est initialisé avec success.",
             status: 'success',
             duration: 9000,
             isClosable: true,
           })
+          reset()
           router.push("/datastore")
         }else{
           toast({
@@ -166,7 +169,8 @@ export function ManualClose() {
             isClosable: true,
           })
         }
-        }
+        }}
+          
         catch (error) 
         {
           setisLoading(false);

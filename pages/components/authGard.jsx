@@ -36,6 +36,7 @@ function IsAuth(Component) {
 
     if(!Tokenn.checkToken){
       router.push("/signin")
+      return 
     }
 
 

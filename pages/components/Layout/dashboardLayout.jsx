@@ -231,8 +231,8 @@ function DashLayout({children}) {
                     </div>
                 </div> */}
             </header>
-            <div className="h-screen px-2 pb-24 overflow-auto md:px-6 bg-whit rounded-lg pt-16">
-            <Breadcrumb spacing='8px' separator={<ChevronRightIcon color='gray.500' />}>
+            <div className="h-screen px-2 pb-1 overflow-auto md:px-6 bg-whit rounded-lg pt-12">
+            <Breadcrumb className="" spacing='8px' separator={<ChevronRightIcon color='gray.500' />}>
                 <BreadcrumbItem>
                     {/* <BreadcrumbLink className="text-bold" href='/'>Accueil</BreadcrumbLink> */}
                     <Link href="/"><i className=" cursor-pointer bi bi-house-check-fill"></i> </Link>
@@ -241,7 +241,7 @@ function DashLayout({children}) {
 
                 <BreadcrumbItem>
                 <span className="btn bg-gray-600 rounded px-2 py-1 text-white cursor-pointer">
-                <BreadcrumbLink href=''>{pathname.replace("/", " ")} </BreadcrumbLink>
+                <BreadcrumbLink href=''>{pathname?.replace("/", " ")} </BreadcrumbLink>
                 </span>
                     
                 </BreadcrumbItem>

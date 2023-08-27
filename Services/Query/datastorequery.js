@@ -46,6 +46,33 @@ export function useFetchDatastore() {
   
     });
   }
+
+
+  export function useGetOneDatastore() {
+    return useMutation(async (id) => {
+      try {
+        console.log("Get one---->Datastore", id);
+      const res = await dstoreReq.getoneDstore(id)
+      console.log(res);
+      console.log("res");
+      // toast("Demande enrégistrée avec success", { hideProgressBar: false, autoClose: 4000, type: 'success' })
+      // toast("Demande en attente de validation", { hideProgressBar: false, autoClose: 7000, type: 'warning' })
+  
+      return res
+          
+      } catch (error) {
+          console.log(error)
+          console.log(error.message);
+      // toast(error.response.data.message, { hideProgressBar: false, autoClose: 4000, type: 'error' })
+          
+      }
+  
+    });
+  }
+
+
+
+
   export function useAddFileToDatastore() {
     return useMutation(async (data) => {
       try {
