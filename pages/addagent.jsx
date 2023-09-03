@@ -18,6 +18,7 @@ function AddAgents() {
   const router = useRouter()
   const toast = useToast()
   const [isLoading, setisLoading] = useState(false)
+  const [temperature, settemperature] = useState(0)
     useEffect(() => {
 
     }, []);
@@ -109,6 +110,12 @@ function AddAgents() {
         setisLoading(false)
       };
 
+      const handleChange = (event) => {
+        const { target: { value } } = event;
+        alert(value)
+      };
+    
+
 
     return (
         <DashLayout>
@@ -135,22 +142,22 @@ function AddAgents() {
 {/* <body className="bg-gray-100"> */}
   <div className="container mx-auto py-8">
     <h1 className="text-2xl font-bold mb-6 text-center"></h1>
-    <form className="w-full max-w-sm mx-auto bg-white p-8 rounded-md shadow-md" onSubmit={handleSubmit(onSubmit)}>
+    <form className="w-1/2 max-w-sm mx-auto bg-white p-8 rounded-md shadow-md" onSubmit={handleSubmit(onSubmit)}>
       <div className="mb-4">
-        <label className="block text-gray-700 text-sm font-bold mb-2" for="name"> Nom </label>
+        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name"> Nom </label>
         <input {...register("name", { required: true })} className={errors.name ?" bg-red-100 text-white w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500": "w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500"}
           type="text" id="name"  placeholder="Alpha WebChat"/>
         {/* <span className="bg-red-300 text-center text-white text-bold w-full p-2 mt-5"> Le nom de l'agent est important</span> */}
           {errors.name && <span className="text-sm"> Donnée requise</span>}
       </div>
       <div className="mb-4">
-        <label className="block text-gray-700 text-sm font-bold mb-2" for="description">Description</label>
+        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="description">Description</label>
         <input className={errors.description ?" bg-red-100 text-white w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500": "w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500"}
           type="text" id="description" {...register("description", { required: true })} placeholder=" Eg: This agent is for survey"/>
           {errors.description && <span className="text-sm"> Donnée requise</span>}
       </div>
       <div className="mb-4">
-        <label className="block text-gray-700 text-sm font-bold mb-2" for="email">Model</label>
+        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">Model</label>
         {/* <input className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500"
           type="email" id="email" name="email" placeholder="john@example.com"/> */}
           <select {...register("model_name", { required: true })} id="countries" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
@@ -160,19 +167,26 @@ function AddAgents() {
         {errors.model_name && <span className="text-sm"> Donnée requise</span>}
       </div>
       <div className="mb-4">
-        <label className="block text-gray-700 text-sm font-bold mb-2" for="email">Température</label>
-        <input {...register("temperature", { required: true })}  id="default-range" type="range" step="0.1" min="0" max="10" className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700" title="hello"/>
+        <span className="flex justify-between">
+
+        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">Température</label>
+        <span className="block text-gray-700 bg-purple-300 p-2 rounded text-sm font-bold mb-2" htmlFor="email"> {temperature} </span>
+        </span>
+
+        <input className="w-full border border-gray-700 p-3" onChange={handleChange}
+          type="number" {...register("temperature", { required: true })} step="0.1" min="0" max="1" />
+        <input onChange={(e)=> alert(e.target.value)} {...register("temperature", { required: true })}  id="default-range" type="range" step="0.1" min="0" max="1" className="w-full h- bg-gray-200 rounded-lg appearance-non cursor-pointer dark:bg-gray-700" title={temperature}/>
         {errors.temperature && <span className="text-sm"> Donnée requise</span>}
       </div>
       <div className="mb-4">
-        <label className="block text-gray-700 text-sm font-bold mb-2" for="password">Prompt</label>
+        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">Prompt</label>
         <input className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500"
           type="text" id="password" {...register("prompt", { required: true })}  defaultValue="As a customer support agent, please provide a helpful and professional response to the user's question or issue." placeholder=""/>
           {errors.prompt && <span className="text-sm"> Donnée requise</span>}
       </div>
 
       <div className="mb-4">
-        <label className="block text-gray-700 text-sm font-bold mb-2" for="email">Prompt type</label>
+        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">Prompt type</label>
         {/* <input className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500"
           type="email" id="email" name="email" placeholder="john@example.com"/> */}
           <select {...register("prompt_type", { required: true })} id="countries" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-blue-300 dark:border-gray-600 dark:placeholder-gray-700 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
@@ -182,19 +196,19 @@ function AddAgents() {
         {errors.prompt_type && <span className="text-sm"> Donnée requise</span>}
       </div>
       <div className="mb-4">
-        <label className="block text-gray-700 text-sm font-bold mb-2" for="email">Datasource</label>
+        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">Datasource</label>
         {/* <input className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500"
           type="email" id="email" name="email" placeholder="john@example.com"/> */}
           <select {...register("datasource_id", { required: true })} id="countries" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-blue-300 dark:border-gray-600 dark:placeholder-gray-700 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                {DsList?.map((dst, index)=>(
                   <option key={index} value={dst.id}> {dst.label} </option>
                ))}
-                <option selected>Choisisez une source</option>
+                <option defaultChecked>Choisisez une source</option>
         </select>
         {errors.datasource_id && <span className="text-sm"> Donnée requise</span>}
       </div>
       {/* <div className="mb-4">
-        <label className="block text-gray-700 text-sm font-bold mb-2" for="confirm-password">Confirm Password</label>
+        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="confirm-password">Confirm Password</label>
         <input className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500"
           type="password" id="confirm-password" name="confirm-password" placeholder="********"/>
       </div> */}

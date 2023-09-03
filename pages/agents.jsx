@@ -15,7 +15,10 @@ import {
   MenuOptionGroup,
   MenuDivider,
 } from '@chakra-ui/react'
+
 import { useFetchAgentData,useTrashResumeData } from '../Services/Query/agentquery';
+import { AddAgentModel } from "./components/modals/addAgent";
+import { DeployAgent } from "./components/modals/deployAgent";
 function Agents() {
     useEffect(() => {
 
@@ -36,18 +39,20 @@ function Agents() {
             Agents
             </Heading>
 
-            <Link href="/addagent" >
+            {/* <Link href="/addagent" >
         <Button colorScheme='purple' variant='solid'>
         <i className="bi bi-plus-circle mx-1"> </i>Nouvel Agent
-  </Button></Link>
+  </Button></Link> */}
+  <AddAgentModel />
     </div>
+   
 </div>
 
             {/* <!-- component --> */}
             <div className="sm:px-1 w-full ">
 
                 {/* <!-- component --> */}
-                <div className="overflow-x-auto">
+                <div className="overflow-auto">
                     <div className="min-w-screen min-h-screenflex items-center justify-center bg-gray-100 font-sans overflow-hidden">
                         <div className="w-full lg:w-5/6 mx-auto">
                             <div className="bg-white shadow-m rounded my-6">
@@ -124,8 +129,8 @@ function Agents() {
                                                     <MenuDivider />
                                                     <MenuGroup className="bg-purple-200 rounded-md" title='Config'>
                                                     <Link href={'/Chat/'+agent.datastore_id} ><MenuItem><i className="bi bi-chat-left-text mr-2"></i> Chat</MenuItem></Link>
-                                                    <MenuItem> <i className="bi bi-balloon mr-2"></i> Déployer </MenuItem>
-                                                    <MenuItem> <i className="bi bi-sliders mr-2"></i> Setting </MenuItem>
+                                                    <MenuItem> <DeployAgent data={agent} /> </MenuItem>
+                                                    {/* <MenuItem> <i className="bi bi-sliders mr-2"></i> Setting </MenuItem> */}
                                                     </MenuGroup>
                                                 </MenuList>
                                                 </Menu>

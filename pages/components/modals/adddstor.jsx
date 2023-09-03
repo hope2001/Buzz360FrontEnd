@@ -149,17 +149,17 @@ export function ManualClose() {
           console.log(response);
 
           if (response){ 
-            const responseapi = await axios.post(iaapi + '/create_index_payload/'+ collectionName +'/'+ response?.data);
+            const responseapi = await axios.post(iaapi + '/create_index_payload/'+ collectionName +'/'+ response?.data.data);
           if (response && responseapi ){
             toast({
             title: 'Datastore '+data.label+' créé 😎.',
-            description: "Votre Datastore est initialisé avec success.",
+            description: "Votre Datastore a été initialisé avec success.",
             status: 'success',
             duration: 9000,
             isClosable: true,
           })
           reset()
-          router.push("/datastore")
+          router.push("/agents")
         }else{
           toast({
             title: 'Something went wrong',
@@ -191,7 +191,7 @@ export function ManualClose() {
     return (
       <>
         {/* <Button onClick={onOpen}>Open Modal</Button> */}
-        <Button onClick={onOpen} colorScheme='purple' variant='solid'>
+        <Button size="sm" onClick={onOpen} colorScheme='purpl' className='bg-gray-500' variant='solid'>
         <i className="bi bi-plus-circle mx-1"> </i>Nouvelle Base de donnée
   </Button>
   
@@ -265,7 +265,7 @@ export function ManualClose() {
 
 
       <button
-        className=" mt-5 w-full bg-blue-500 text-white text-sm font-bold py-2 px-4 rounded-md hover:bg-gray-700 transition duration-300"
+        className=" mt-5 w-full bg-gray-900 text-white text-sm font-bold py-2 px-4 rounded-md hover:bg-gray-700 transition duration-300"
         type="submit"> {isLoading? <Spinner color='white w-24' className="m-auto" /> : <span>Sauvegarder</span> }   </button>
     </form>
 

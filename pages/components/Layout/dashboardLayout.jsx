@@ -16,6 +16,7 @@ function DashLayout({children}) {
     const router = useRouter()
     const pathname = usePathname()
     const [toggleNav, settoggleNav] = useState(false)
+    const [toggleSidebar, settoggleSidebar] = useState(false)
     return ( 
 
         <ChakraProvider>             
@@ -92,11 +93,12 @@ function DashLayout({children}) {
 <div className="w-full">
     <nav className="bg-white dark:bg-gray-100  shadow ">
         <div className="px-8 mx-auto max-w-7xl">
+
             <div className="flex items-center justify-between h-16">
                 <div className=" flex items-center">
-                    <a className="flex-shrink-0" href="/">
+                    <Link className="flex-shrink-0" href="/">
                         {/* <img className="w-8 h-8" src="/icons/rocket.svg" alt="Workflow"/> */}
-                    </a>
+                    </Link>
                     {/* <div className="hidden md:block">
                         <div className="flex items-baseline ml-10 space-x-4">
                             <a className="text-gray-300  hover:text-gray-800 dark:hover:text-white px-3 py-2 rounded-md text-sm font-medium" href="/#">
@@ -174,20 +176,11 @@ function DashLayout({children}) {
                 </div>
             </div>
         </div>
-        <div className={toggleNav? " mt-5": "hidden" }>
+        <div className={toggleNav? " mt-50 hidden": "hidden" }>
         {/* <div className="hidden"> */}
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
                 <Link className="text-gray-300 hover:text-gray-800 dark:hover:text-white block px-3 py-2 rounded-md text-base font-medium" href="/#">
-                    Home
-                </Link>
-                <Link className="text-gray-800 dark:text-white block px-3 py-2 rounded-md text-base font-medium" href="/#">
-                    Gallery
-                </Link>
-                <Link className="text-gray-300 hover:text-gray-800 dark:hover:text-white block px-3 py-2 rounded-md text-base font-medium" href="/#">
-                    Content
-                </Link>
-                <Link className="text-gray-300 hover:text-gray-800 dark:hover:text-white block px-3 py-2 rounded-md text-base font-medium" href="/#">
-                    Contact
+                    Accueil
                 </Link>
             </div>
         </div>
@@ -248,6 +241,7 @@ function DashLayout({children}) {
 
                 </Breadcrumb>
                 {children}
+                
                 {/* <h1 className="text-4xl font-semibold text-gray-800 dark:text-white">
                     Good afternoom, Charlie
                 </h1>

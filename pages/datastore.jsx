@@ -25,6 +25,7 @@ import AddDstorefile from "./components/modals/adddatastorefile";
 import AddDstoreLink from "./components/modals/addLinkstorefile";
 import axios from "axios";
 import { collectionName, fileserverpath, iaapi, thisServer } from "@/Services/Requests/env";
+import { useFetchUserData } from "@/Services/Query/user";
 
 // import { adddatastorefile } from "./components/modals/adddatastorefile";
 // import { useFetchDatastore,useTrashResumeData } from '../Services/Query/agentquery';
@@ -40,8 +41,15 @@ function Datastore() {
         data: DsList,
         isLoading: isLoadingResumeData,
         error: errorResumeData,
-        refetch
+        refetch: refetchDlist
     } = useFetchDatastore();
+
+    const {
+        data: currenntuser,
+        isLoading: isLoadingCurrentUser,
+        error: errorCurrentUser, 
+        refetch
+    } = useFetchUserData();
 
     const processDatastore = async (datastore) => {
 
@@ -53,12 +61,12 @@ function Datastore() {
             const path = fileserverpath + "/" + datastore.data;
             console.log(path);
             setisLoading(!isLoading)
-            const response = await axios.post(iaapi + "/insert_data/" + collectionName + "/" + datastore.label + "/directory?directory_or_link=" + path,);
-
+            const response = await axios.post(iaapi + "/insert_data/" + collectionName + "/" + datastore.data +"/directory?directory_or_link=" + path,);
+            // alert(JSON.stringify(response.data))
             if (response.data) {
                 console.log('Processing effectué avec success:', response.data);
                 // alert(response.data)
-
+                 setisLoading(false)
                 toast({
                     title: 'La base ' + datastore.data + ' à été téléversée avec success 😎.',
                     description: "Files uploaded with success.",
@@ -66,7 +74,7 @@ function Datastore() {
                     duration: 9000,
                     isClosable: true,
                 })
-                setisLoading(!isLoading)
+                setisLoading(false)
             }
         } catch (error) {
             console.error('Error uploading files:', error);
@@ -77,7 +85,7 @@ function Datastore() {
                 duration: 9000,
                 isClosable: true,
             })
-            setisLoading(!isLoading)
+            setisLoading(false)
         }
 
 
@@ -88,7 +96,7 @@ function Datastore() {
             <div className="container">
                 <div className="flex justify-between p-3">
                     <Heading noOfLines={2}>
-                        Datastores
+                        Datastores 
                     </Heading>
 
                     {/* <Link href="/addagent" >
@@ -141,7 +149,8 @@ function Datastore() {
                                                         {/* <div className="mr-2"> */}
                                                         {/* <img className="w-6 h-6 rounded-full" src="https://randomuser.me/api/portraits/men/1.jpg" /> */}
                                                         {/* </div> */}
-                                                        <span>  {agent.description}
+                                                        <span>  
+                                                            {agent.description}
                                                         </span>
                                                     </div>
                                                 </td>
@@ -159,9 +168,9 @@ function Datastore() {
                                                         </MenuButton>
                                                         <MenuList>
                                                             <MenuGroup className="bg-purple-200 rounded-md" title='Options'>
-                                                                <Link href="/"><MenuItem> <i className="bi bi-folder-x  mr-2"></i>  Modifier</MenuItem></Link>
-                                                                <MenuItem onClick={() => (setShowAddLink(!showaddLink), setAgent(agent))} > <i className="bi bi-link mr-2"></i>  Ajouter une page Web</MenuItem>
-                                                                <MenuItem onClick={() => (setShowAddfile(!showaddFile), setAgent(agent))} > <i className="bi bi-file-earmark-plus-fill mr-2"></i>  Ajouter Fichier</MenuItem>
+                                                               <MenuItem> <i className="bi bi-folder-x  mr-2"></i>  Modifier</MenuItem>
+                                                                {/* <MenuItem onClick={() => (setShowAddLink(!showaddLink), setAgent(agent))} > <i className="bi bi-link mr-2"></i>  Ajouter une page Web</MenuItem> */}
+                                                                <MenuItem onClick={() => (setShowAddfile(!showaddFile), setAgent(agent))} > <i className="bi bi-file-earmark-plus-fill mr-2"></i>  Charger Data</MenuItem>
 
                                                                 <MenuItem> <span className="bg-red-400 w-full p-2 text-white rounded-md"> <i className="bi bi-trash3 mr-2"></i>  Supprimer</span> </MenuItem>
                                                                 <MenuItem disabled={isLoading?true: false} onClick={() => processDatastore(agent)} >  

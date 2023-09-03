@@ -16,7 +16,7 @@ export function useFetchUserData() {
     //   toast(err.response.data.message, { hideProgressBar: false, autoClose: 4000, type: 'error' })
       console.log("user query");
       console.log(err);
-      console.log(err.response.data.message);
+      console.log(err.message);
       }
         }
     });

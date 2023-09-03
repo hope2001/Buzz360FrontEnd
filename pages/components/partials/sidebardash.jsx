@@ -72,7 +72,7 @@ const Sidebar = () => {
                     ))
                 }</div>
 
-<div onClick={()=> (Tokenn.dropToken, router.push("/signin")) }  className="hover:text-gray-800 rounded-md bg-orange-600 text-white hover:bg-purple-100 flex items-center p-2 my-6 transition-colors dark:hover:text-white dark:hover:bg-purple-600 duration-200   dark:text-white text-center flex justify-center px-auto " >
+<div onClick={()=> (Tokenn.dropToken, router.push("/signin")) }  className="cursor-pointer hover:text-gray-800 rounded-md bg-gray-600 text-white hover:bg-purple-100 flex items-center p-2 my-6 transition-colors dark:hover:text-white dark:hover:bg-purple-600 duration-200   dark:text-white text-center flex justify-center px-auto " >
                         
                         <i className="bi bi-trash"></i>
                         <span className="mx-4 text-lg font-normal">

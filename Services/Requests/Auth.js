@@ -31,7 +31,7 @@ let Login = (credentials) => {
  * @returns {Promise}
  */
 let userLogedData = () => {
-    return Axios.get('/user')
+    return Axios.get('/token/users/me/')
 }
 
 export const AuthSys = {
