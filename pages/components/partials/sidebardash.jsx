@@ -52,7 +52,7 @@ const Sidebar = () => {
             <Link href="/" className="flex items-center justify-start mx-6 mt-5 bg-orange-00 rounded-lg">
                 {/* <img className="h-10" src="/icons/rocket.svg"/> */}
                 <span className="w-full  p-2 rounded bg-gray-00 text-white text-center dark:text-gray-300 ml-4 text-2xl font-bold">
-                  Databerry 
+                  360
                 </span>
             </Link>
             <nav className="mt-10 px-6 flex flex-col justify-between h-1/2 ">

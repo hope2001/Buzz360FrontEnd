@@ -221,7 +221,7 @@ export function AddAgentModel() {
                                             className="w-full"
                                             min={0}
                                             max={1}
-                                            step={0.1}
+                                            step={0.10}
                                             flex='1'
                                             focusThumbOnChange={false}
                                             value={value}

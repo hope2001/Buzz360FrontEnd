@@ -10,7 +10,7 @@ import { collectionName, iaapi } from '@/Services/Requests/env';
 import axios from 'axios';
 import { Spinner } from '@chakra-ui/react'
 function Chat() {
-    const [dstore, setdstore] = useState();
+    const [dstore, setdstore] = useState('');
     const [Jsondata, setJsonData] = useState([]);
     const router = useRouter();
     const {
@@ -92,7 +92,7 @@ function Chat() {
     };
     return (
         <DashboardLayout>
-            <div className="h-full relative">
+           
             <div className="container-fluid bg-gray-200 rounded p-5 m-3 h-ful  overflow-auto h-100">
 
                 {converse?.map((item, index) => (item?.from == "IA" ?
@@ -101,7 +101,7 @@ function Chat() {
                             {/* <span className="absolute -top-5 -left-2 bg-white border-0 rounded-full"> <img src="/images/custom/chatbot.png" alt="" className="w-[30px] zIndex-5 rounded-full" /> </span> */}
                         <i className="bi bi-robot px-2 py-1 bg-gray-400  rounded-md align-middle mb-auto  text-white mx-2" style={{fontSize:"20px"}}></i>
                         <span style={{fontSize:"20px"}} className="text-white p-1">
-                          {item.message}
+                          {item.message.replace("\n",<br/>)}
                         </span>
                         {/* </div> */}
                     </div>
@@ -115,7 +115,7 @@ function Chat() {
 
                    { chatload && <div className=" flex justify-start my-2">
                         <span style={{fontSize:"20px"}} className="rounded-md my-2 shadow sm text-white bg-gray-700  p-3">
-                        <button type="button" class="" disabled>
+                        <button type="button" className="" disabled>
                         <i className="bi bi-robot text-white mx-2" style={{fontSize:"20px"}}></i>
                         <Spinner/> ....
                         </button>
@@ -128,7 +128,7 @@ function Chat() {
                 <Button type="submit" className="item-center" colorScheme='purple' size='lg' variant='solid'>
                     <i className="bi bi-send-plus"></i>
                 </Button>
-            </form></div>
+            </form>
         </DashboardLayout>
     );
 }

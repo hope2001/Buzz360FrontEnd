@@ -8,7 +8,7 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import { ChakraProvider } from '@chakra-ui/react'
 import "bootstrap-icons/font/bootstrap-icons.css";
 import LoadingP from './components/partials/loadingpage';
-
+import NextNProgress from 'nextjs-progressbar';
 export default function App({ Component, pageProps }) {
   const [isload, setisload] = useState(true)
   useEffect(()=>{
@@ -28,6 +28,7 @@ export default function App({ Component, pageProps }) {
 
 
   return <>
+  <NextNProgress />
   {isload ? <LoadingP/>:
   <QueryClientProvider client={queryClient}>
   {/* <ChakraProvider> */}
