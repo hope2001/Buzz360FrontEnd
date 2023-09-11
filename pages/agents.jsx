@@ -21,6 +21,7 @@ import { AddAgentModel } from "./components/modals/addAgent";
 import { DeployAgent } from "./components/modals/deployAgent";
 import { DeleteThing } from "./components/modals/trashThing";
 import LoadingP from "./components/partials/loadingpage";
+import CodeEditor from "./components/partials/codeContainer";
 function Agents() {
     const [Agentitem, setAgentitem] = useState({})
     useEffect(() => {
@@ -177,7 +178,7 @@ function Agents() {
                     </div>
                 </div>
             </div>
-                        
+                       
         </DashLayout>
 </>
 
