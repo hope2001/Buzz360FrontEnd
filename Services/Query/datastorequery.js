@@ -1,4 +1,4 @@
-import { useQuery } from 'react-query';
+import { useQuery,useQueryClient } from 'react-query';
 import { useMutation } from 'react-query';
 // import { ResumeE } from './../Requests/Resume';
 import { Tokenn } from '../helpers/TokenKeeper';
@@ -26,6 +26,7 @@ export function useFetchDatastore() {
   
 
   export function useAddDatastore() {
+    const queryClient = useQueryClient()
     return useMutation(async (data) => {
       try {
         console.log("Create---->Datastore", data);
@@ -44,6 +45,10 @@ export function useFetchDatastore() {
           
       }
   
+    },{
+      onSuccess: () => {
+        queryClient.invalidateQueries('Dstore')
+      }
     });
   }
 

@@ -1,9 +1,11 @@
-import { useQuery } from 'react-query';
+import { useQuery,useQueryClient } from 'react-query';
 import { useMutation } from 'react-query';
 // import { ResumeE } from './../Requests/Resume';
 import { Tokenn } from '../helpers/TokenKeeper';
 import { toast } from "react-toastify";
 import { agentReq } from '../Requests/Agents';
+
+
 
 export function useFetchAgentlogData() {
     return useQuery('agentlogData', async () => {
@@ -41,16 +43,14 @@ export function useFetchAgentData() {
   
 
   export function useAddAgent() {
+    const queryClient = useQueryClient()
     return useMutation(async (data) => {
       try {
         console.log("Create---->Agent", data);
       const res = await agentReq.AddAgent(data)
-      console.log(res);
-      console.log("res");
-      // toast("Demande enrégistrée avec success", { hideProgressBar: false, autoClose: 4000, type: 'success' })
-      // toast("Demande en attente de validation", { hideProgressBar: false, autoClose: 7000, type: 'warning' })
-  
+
       return res
+
           
       } catch (error) {
           console.log(error)
@@ -58,17 +58,27 @@ export function useFetchAgentData() {
       // toast(error.response.data.message, { hideProgressBar: false, autoClose: 4000, type: 'error' })
           
       }
+
   
+    },{
+      onSuccess: () => {
+        queryClient.invalidateQueries('agentData')
+      }
     });
   }
+
+
+
+
+
+
+
 
   export function useAddDataForIAResume() {
     return useMutation(async (data) => {
       try {
         console.log("add---->iaresume", data);
       const res = await ResumeE.datatoia(data)
-      // toast("Demande enrégistrée avec success", { hideProgressBar: false, autoClose: 4000, type: 'success' })
-      // toast("Demande en attente de validation", { hideProgressBar: false, autoClose: 7000, type: 'warning' })
   console.log(res);
       return res
           
@@ -102,25 +112,20 @@ export function useFetchAgentData() {
   
 
 
-  export function useTrashResumeData() {
-    const trashResumeMutation = useMutation(async (data) => {
-      console.log(data);
-      const id = data.resumeID;
-      console.log( " data.resumeID",data);
+  export function useTrashAgent() {
+    const queryClient = useQueryClient()
+    return useMutation(async (id) => {
       try {
-        const res = await ResumeE.trashResume(id);
+        const res = await agentReq.trashAgent(id);
         toast("Supprimé avec succès", { hideProgressBar: false, autoClose: 7000, type: 'success' });
         return res;
       } catch (error) {
         console.log(error);
-        toast("Une erreur est survenue suppression non éffectuée", { hideProgressBar: false, autoClose: 4000, type: 'error' })
-        // throw error;
+        toast("Une erreur est survenue", { hideProgressBar: false, autoClose: 6000, type: 'error' })
+      }
+    },{
+      onSuccess: () => {
+        queryClient.invalidateQueries('agentData')
       }
     });
-  
-    return {
-      trashResume: trashResumeMutation.mutateAsync,
-      isLoading: trashResumeMutation.isLoading,
-      error: trashResumeMutation.error,
-    };
   }

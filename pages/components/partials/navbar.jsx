@@ -27,12 +27,11 @@ const NavBar = () => {
   }, []);
   const item = [
     { title: "Accueil", path: "/" },
-    { title: "Services", path: "/services" },
-    { title: "Tarifs", path: "/prices" },
-    { title: "Affiliés", path: "/affiliates" },
+    { title: "Services", path: "/#services" },
+    { title: "Tarifs", path: "/#prices" },
+    { title: "Affiliés", path: "/#affiliates" },
     { title: "Docs", path: "/docs" },
-    { title: "Faq", path: "/faq" },
-    { title: "Agents", path: "/agents" },
+    { title: "Faq", path: "/#faq" }
   ]
 
 

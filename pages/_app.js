@@ -7,6 +7,7 @@ import { ToastContainer } from 'react-toastify';
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ChakraProvider } from '@chakra-ui/react'
 import "bootstrap-icons/font/bootstrap-icons.css";
+import { ReactQueryDevtools } from 'react-query/devtools';
 import LoadingP from './components/partials/loadingpage';
 import NextNProgress from 'nextjs-progressbar';
 export default function App({ Component, pageProps }) {
@@ -35,6 +36,7 @@ export default function App({ Component, pageProps }) {
       <Component {...pageProps} />
       {/* </ChakraProvider> */}
       <ToastContainer />
+      {/* <ReactQueryDevtools /> */}
   </QueryClientProvider>}
   </> 
   

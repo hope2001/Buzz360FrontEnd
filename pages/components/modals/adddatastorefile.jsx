@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation'
 import { useAddFileToDatastore } from '@/Services/Query/datastorequery';
 import { useToast } from '@chakra-ui/react'
 import { useFetchUserData } from '@/Services/Query/user';
+import Axios from '@/Services/Requests/interceptor';
 function AddDstorefile({ data, show, setShow }) {
   const typeItem = [
     { id: 1, label: "Fichier", type: "file" },
@@ -48,8 +49,8 @@ function AddDstorefile({ data, show, setShow }) {
         for (let i = 0; i < datas.file.length; i++) {
           formData.append('files', datas.file[i]);
         }
-
-        const response = await axios.post(thisServer + "/datastore/upload/" + data.data, formData, {
+        console.log(formData);
+        const response = await Axios.post(thisServer + "/datastore/upload/" + data.data+"?datastoreid="+data.id, formData, {
           headers: {
             'Content-Type': 'multipart/form-data',
           },
@@ -57,14 +58,15 @@ function AddDstorefile({ data, show, setShow }) {
 
         console.log('Upload successful:', response.data);
         if (response.data) {
-          let bod = {
-            name: datas.name,
-            description: datas.description,
-            path: response.data.path,
-            datastore_id: data.id
-          }
-          await mutateAsync(bod)
-          //   à revoir urgement 
+          // alert(JSON.stringify(response.data))
+          // let bod = {
+          //   name: datas.name,
+          //   description: datas.description,
+          //   path: response.data.path,
+          //   datastore_id: data.id
+          // }
+          // await mutateAsync(bod)
+          // //   à revoir urgement 
           toast({
             title: 'Fichier(s) ajouté avec success à la base ' + data.data + ' 😎.',
             description: "Files uploaded with success.",

@@ -10,7 +10,7 @@ export function useFetchUserData() {
             try {
       const res = await AuthSys.userLogedData();
       console.log(res)
-      console.log("user--->data", res.data);
+      console.log("thisuser--->data", res.data);
       return res.data;
       } catch (err) {
     //   toast(err.response.data.message, { hideProgressBar: false, autoClose: 4000, type: 'error' })

@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --port: 3850",
+    "dev": "next dev --port 3850",
     "watch": " npx tailwindcss -i ./styles/input.css -o ./styles/output.css --watch",
     "build": "next build",
     "start": "next start",

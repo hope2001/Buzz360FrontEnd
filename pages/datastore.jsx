@@ -26,6 +26,7 @@ import AddDstoreLink from "./components/modals/addLinkstorefile";
 import axios from "axios";
 import { collectionName, fileserverpath, iaapi, thisServer } from "@/Services/Requests/env";
 import { useFetchUserData } from "@/Services/Query/user";
+import LoadingP from "./components/partials/loadingpage";
 
 // import { adddatastorefile } from "./components/modals/adddatastorefile";
 // import { useFetchDatastore,useTrashResumeData } from '../Services/Query/agentquery';
@@ -56,6 +57,13 @@ function Datastore() {
         // alert(JSON.stringify(datastore))
 
         try {
+            toast({
+                title: 'Chargement des données en cours 😎.',
+                description: "Files proccessing.",
+                status: 'info',
+                duration: 9000,
+                isClosable: true,
+            })
             let body = { directory_or_link: thisServer + "/static/" + datastore.data }
             console.log(body);
             const path = fileserverpath + "/" + datastore.data;
@@ -70,7 +78,7 @@ function Datastore() {
                 toast({
                     title: 'La base ' + datastore.data + ' à été téléversée avec success 😎.',
                     description: "Files uploaded with success.",
-                    status: 'info',
+                    status: 'success',
                     duration: 9000,
                     isClosable: true,
                 })
@@ -108,11 +116,11 @@ function Datastore() {
             </div>
 
             {/* <!-- component --> */}
-            <div className="sm:px-1 w-full ">
-
+            <div className="sm:px-1 w-full">
+                
                 {/* <!-- component --> */}
-                <div className="overflow-x-auto">
-                    <div className="min-w-screen min-h-screenflex items-center justify-center bg-gray-100 font-sans overflow-hidden">
+                {/* <div className=""> */}
+                    <div className=" flex items-center justify-center bg-gray-100 font-sans overflow-auto">
                         <div className="w-full lg:w-5/6 mx-auto">
                             <div className="bg-white shadow-m rounded my-6">
                                 <table className="min-w-max w-full table-auto rounded-xl overflow-hidden">
@@ -129,6 +137,7 @@ function Datastore() {
                                             <td colSpan="6" className="p-3 bg-gray-300 font-bold text-center w-full"> Aucune source disponible.</td>
 
                                         </tr>}
+                                        
                                         {DsList?.map((agent, index) => (
                                             <tr key={index} className="border-b border-gray-200 hover:bg-gray-100 w-full">
                                                 <td className="py-3 px-6 text-left whitespace-nowrap">
@@ -215,16 +224,12 @@ function Datastore() {
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
+                {/* </div>*/}
+            </div> 
             <AddDstorefile data={agent} show={showaddFile} setShow={setShowAddfile} />
             <AddDstoreLink data={agent} show={showaddLink} setShow={setShowAddLink} />        {/* <AddDatastore/> */}
 
         </DashLayout>
-
-
-
-
     );
 }
 

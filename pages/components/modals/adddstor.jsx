@@ -159,7 +159,7 @@ export function ManualClose() {
             isClosable: true,
           })
           reset()
-          router.push("/agents")
+          router.push("/datastore")
         }else{
           toast({
             title: 'Something went wrong',

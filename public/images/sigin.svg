@@ -1,9 +1,9 @@
 <svg width="428" height="351" viewBox="0 0 428 351" fill="none" xmlns="http://www.w3.org/2000/svg">
 <rect width="428" height="344" rx="15.3957" fill="url(#paint0_linear_132_14509)" fill-opacity="0.03"/>
-<rect x="0.384892" y="0.384892" width="427.23" height="343.23" rx="15.0108" stroke="url(#paint1_linear_132_14509)" stroke-opacity="0.08" stroke-width="0.769784"/>
+<rect x="0.384892" y="0.384892" width="427.23" height="343.23" rx="15.0108" stroke="url(#paint1_linear_132_14509)" stroke-opacity="0.08" strokeWidth="0.769784"/>
 <rect x="8" y="9" width="412" height="342" rx="9.23741" fill="url(#paint2_linear_132_14509)" fill-opacity="0.04"/>
-<rect x="8.38489" y="9.38489" width="411.23" height="341.23" rx="8.85252" stroke="url(#paint3_linear_132_14509)" stroke-opacity="0.12" stroke-width="0.769784"/>
-<line x1="152.802" y1="7.69785" x2="152.802" y2="308.683" stroke="url(#paint4_linear_132_14509)" stroke-opacity="0.12" stroke-width="0.769784"/>
+<rect x="8.38489" y="9.38489" width="411.23" height="341.23" rx="8.85252" stroke="url(#paint3_linear_132_14509)" stroke-opacity="0.12" strokeWidth="0.769784"/>
+<line x1="152.802" y1="7.69785" x2="152.802" y2="308.683" stroke="url(#paint4_linear_132_14509)" stroke-opacity="0.12" strokeWidth="0.769784"/>
 <circle cx="26.1729" cy="27.7122" r="3.07914" fill="white" fill-opacity="0.2"/>
 <circle cx="36.9493" cy="27.7122" r="3.07914" fill="white" fill-opacity="0.2"/>
 <circle cx="47.7266" cy="27.7122" r="3.07914" fill="white" fill-opacity="0.2"/>
@@ -59,7 +59,7 @@
 <rect x="23.0938" y="193.986" width="110.849" height="23.0935" rx="6.15827" fill="white" fill-opacity="0.02"/>
 <rect x="23.0938" y="226.317" width="110.849" height="23.0935" rx="6.15827" fill="white" fill-opacity="0.01"/>
 <rect x="23.0938" y="258.647" width="110.849" height="23.0935" rx="6.15827" fill="url(#paint5_linear_132_14509)" fill-opacity="0.01"/>
-<line x1="7.69824" y1="45.8022" x2="152.418" y2="45.8022" stroke="white" stroke-opacity="0.12" stroke-width="0.769784"/>
+<line x1="7.69824" y1="45.8022" x2="152.418" y2="45.8022" stroke="white" stroke-opacity="0.12" strokeWidth="0.769784"/>
 <defs>
 <linearGradient id="paint0_linear_132_14509" x1="214" y1="0" x2="214" y2="344" gradientUnits="userSpaceOnUse">
 <stop stop-color="white"/>

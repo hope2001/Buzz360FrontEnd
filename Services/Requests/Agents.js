@@ -30,7 +30,7 @@ let AddAgent = (rdata) => {
  * @returns {Promise}
  */
 let trashAgent = (id) => {
-    return Axios.put('/resumes/'+id+'/trash')
+    return Axios.delete('/agents/trash/'+id)
 }
 
 /** 

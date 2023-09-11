@@ -5,10 +5,11 @@ import { useRouter } from 'next/navigation';
 import SignIn from "../signin";
 
 function IsAuth(Component) {
+  
   return function (props) {
     const router = useRouter();
     const [isLoading, setisLoading] = useState(true)
-    const [isLogged, setisLogged] = useState(false)
+    const [isLogged, setisLogged] = useState(null)
 
 
     // Check if the user is authenticated by making an API call.

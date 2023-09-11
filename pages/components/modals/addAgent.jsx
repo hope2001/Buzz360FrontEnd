@@ -221,7 +221,7 @@ export function AddAgentModel() {
                                             className="w-full"
                                             min={0}
                                             max={1}
-                                            step={0.10}
+                                            step={0.100}
                                             flex='1'
                                             focusThumbOnChange={false}
                                             value={value}
@@ -262,7 +262,7 @@ export function AddAgentModel() {
                                         </div>
                                         {/* <input className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500"
           type="email" id="email" name="email" placeholder="john@example.com"/> */}
-                                        <Select {...register("datasource_id", { required: true })} id="countries" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-500 dark:border-gray-600 dark:placeholder-gray-700 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                        <Select {...register("datasource_id", { required: true })} id="countries" className="bg-gray-500 border border-gray-300 text-gray-800 text-sm rounded-lg w-full p-2.5  dark:focus:ring-blue-500 dark:focus:border-blue-50">
                                             {DsList?.map((dst, index) => (
                                                 <option key={index} value={dst.id}> {dst.label} </option>
                                             ))}

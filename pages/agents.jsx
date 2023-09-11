@@ -2,7 +2,7 @@ import NavBar from "./components/partials/navbar";
 import Link from "next/link"
 import Sidebar from "./components/partials/sidebardash";
 import DashLayout from "./components/Layout/dashboardLayout";
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { Button, ButtonGroup } from '@chakra-ui/react'
 import { Heading } from '@chakra-ui/react'
 import {
@@ -16,23 +16,28 @@ import {
   MenuDivider,
 } from '@chakra-ui/react'
 
-import { useFetchAgentData,useTrashResumeData } from '../Services/Query/agentquery';
+import { useFetchAgentData,useTrashAgent,useTrashResumeData } from '../Services/Query/agentquery';
 import { AddAgentModel } from "./components/modals/addAgent";
 import { DeployAgent } from "./components/modals/deployAgent";
+import { DeleteThing } from "./components/modals/trashThing";
+import LoadingP from "./components/partials/loadingpage";
 function Agents() {
+    const [Agentitem, setAgentitem] = useState({})
     useEffect(() => {
 
     }, []);
 
     const {
         data: AgentList,
-        isLoading: isLoadingResumeData,
-        error: errorResumeData,
+        isLoading: isLoadingAgentList,
+        error: errorAgentList,
         refetch
       } = useFetchAgentData();
-    return (
-        <DashLayout>
 
+    return (
+        <>
+{/* <LoadingP/> */}
+        <DashLayout>
 <div className="container"> 
     <div className="flex justify-between p-3"> 
     <Heading noOfLines={2}>
@@ -68,10 +73,22 @@ function Agents() {
                                         </tr>
                                     </thead>
                                     <tbody className="text-gray-600 text-sm font-light">
-                                        {!AgentList &&<tr className="w-full p-1 bg-blue-200 ">
+                                        {(!AgentList && !isLoadingAgentList) &&<tr className="w-full p-1 bg-blue-200 ">
                                             <td colSpan="6" className="p-3 bg-gray-300 font-bold text-center w-full"> Aucun agent disponible.</td>
                                             
                                         </tr>}
+                                        {isLoadingAgentList && [1,2,3,4,5].map((item,index)=>(
+                                            <tr key={index} className="w-full p-1 my-2 bg-blue-200 animate-pulse">
+                                            <td colSpan="" className="p-3 bg-purple-300 font-bold text-center w-full"> </td>
+                                            <td colSpan="" className="p-3 bg-purple-300 font-bold text-center w-full"> </td>
+                                            <td colSpan="" className="p-3 bg-purple-300 font-bold text-center w-full"> </td>
+                                            <td colSpan="" className="p-3 bg-purple-300 font-bold text-center w-full"> </td>
+                                            <td colSpan="" className="p-3 bg-purple-300 font-bold text-center w-full"> </td>
+                                            <td colSpan="" className="p-3 bg-purple-300 font-bold text-center w-full"> </td>
+                                            
+                                        </tr>
+                                        )) 
+                                        }
                                         {AgentList?.map((agent, index)=>(
                                             <tr key={index} className="border-b border-gray-200 hover:bg-gray-100 w-full">
                                             <td className="py-3 px-6 text-left whitespace-nowrap">
@@ -124,7 +141,8 @@ function Agents() {
                                                     <MenuGroup className="bg-purple-200 rounded-md" title='Options'>
                                                     <Link href="/"><MenuItem> <i className="bi bi-folder-x  mr-2"></i>  Modifier</MenuItem></Link>
                                                     
-                                                    <MenuItem> <i className="bi bi-trash3 mr-2"></i>  Supprimer </MenuItem>
+                                                    <MenuItem> <DeleteThing data={agent}>    <i className="bi bi-trash3 mr-2"></i>  Supprimer </DeleteThing> </MenuItem>
+                                                    {/* // <MenuItem onClick={()=> handleDelete(agent.id)}> <i className="bi bi-trash3 mr-2"></i>  Supprimer <DeleteThing data={agent}/></MenuItem> */}
                                                     </MenuGroup>
                                                     <MenuDivider />
                                                     <MenuGroup className="bg-purple-200 rounded-md" title='Config'>
@@ -159,9 +177,9 @@ function Agents() {
                     </div>
                 </div>
             </div>
-
+                        
         </DashLayout>
-
+</>
 
 
 
