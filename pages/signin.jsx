@@ -17,7 +17,7 @@ function SignIn() {
         register,
         handleSubmit,
         watch,
-        resetField,
+        reset,
         formState: { errors },
       } = useForm();
 
@@ -41,7 +41,7 @@ function SignIn() {
             //  if(response.status == 201){
                 console.log(response)
                 Tokenn.saveToken(response.data.access_token)
-                resetField()
+                reset()
                 toast("Vous êtes connecté", {
                     hideProgressBar: false,
                     autoClose: 5000,

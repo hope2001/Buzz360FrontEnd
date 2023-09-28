@@ -82,7 +82,7 @@ function Chat() {
             //   const response = await axios.post(iaapi+"/chatbot", body);
             console.log(response.data);
             const userquest = { from: "Humain", message: data.query };
-            const iares = { from: "IA", message: response.data.bot_response };
+            const iares = { from: "IA", message: response.data.bot_response.answer };
             setchatLoad(false)
             setconverse([...converse,userquest, iares ])
             
@@ -136,7 +136,7 @@ function Chat() {
      <div key={index} className="chat-message">
          <div className="flex items-end">
             <div className="flex flex-col space-y-2  max-w-xs mx-2 order-2 items-start">
-               <div><span style={{fontSize:"17px"}} className="px-4 py-2 rounded-lg inline-block rounded-bl-none bg-gray-300 text-gray-600"> {item.message.replace("\n",<br/>)} </span></div>
+               <div><span style={{fontSize:"17px"}} className="px-4 py-2 rounded-lg inline-block rounded-bl-none bg-gray-300 text-gray-600"> {item.message} </span></div>
             </div>
             <i className="bi bi-robot px-2 py-1 bg-gray-700  rounded-md align-middle mb-auto  text-white mx-2" style={{fontSize:"20px"}}></i>
                        
@@ -147,7 +147,7 @@ function Chat() {
       <div key={index} className="chat-message">
          <div className="flex items-end justify-end">
             <div style={{fontSize:"20px"}} className="flex flex-col space-y-2  max-w-xs mx-2 order-1 items-end">
-               <div><span className="px-4 py-2 rounded-lg inline-block rounded-br-none bg-blue-600 text-white ">{item.message.replace("\n",<br/>)}</span></div>
+               <div><span className="px-4 py-2 rounded-lg inline-block rounded-br-none bg-blue-600 text-white ">{item.message}</span></div>
             </div>
             <img src="https://images.unsplash.com/photo-1590031905470-a1a1feacbb0b?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=3&amp;w=144&amp;h=144" alt="My profile" className="w-6 h-6 rounded-full order-2"/>
          </div>

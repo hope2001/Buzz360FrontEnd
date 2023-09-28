@@ -1,7 +1,10 @@
-export const iaapi = "http://127.0.0.1:8000"
+// export const iaapi = "http://127.0.0.1:8000"
+export const iaapi = "https://chatbot.databoot.io"
 export const collectionName = "FrontEndCollection"
-export const thisServer = "http://127.0.0.1:8025"
-export const fileserverpath = `C:/Users/3DT__Dev/Desktop/Private wokspace/DataberryApi/uploads`
+// export const thisServer = "http://127.0.0.1:8025"
+export const thisServer = "https://api.databoot.io"
+export const fileserverpath = `/home/databoot/databoot_project/DataberryApi/uploads`
+// export const fileserverpath = `C:/Users/3DT__Dev/Desktop/Private wokspace/DataberryApi/uploads`
 
 export const prompt = [
     {

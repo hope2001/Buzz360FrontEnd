@@ -27,12 +27,13 @@ import axios from 'axios'
 // import { toast } from 'react-toastify';
 import { Tokenn } from '../helpers/TokenKeeper';
 import { toast } from 'react-toastify';
+import { thisServer } from './env';
 
 // import { useRouter } from 'next/navigation'
 
 // Paramétrage de base d'axios
 const Axios = axios.create({
-    baseURL: 'http://localhost:8025'
+    baseURL: thisServer
 })
 // const router = useRouter();
 

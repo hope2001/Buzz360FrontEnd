@@ -1,8 +1,6 @@
-import '@/styles/output.css'
-// import '@/styles/globals.css'
-// import '@/styles/style.css'
+import "@/styles/output.css"
 import { useEffect, useState } from 'react'
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from 'react-toastify';
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ChakraProvider } from '@chakra-ui/react'
