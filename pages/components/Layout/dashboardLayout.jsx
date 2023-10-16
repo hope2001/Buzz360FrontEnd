@@ -1,16 +1,14 @@
 import { useState } from "react";
-import Sidebar from "../partials/sidebardash";
-import { ChakraProvider } from '@chakra-ui/react'
+import { ChakraProvider } from '@chakra-ui/react';
 import Link from "next/link";
 import {
     Breadcrumb,
     BreadcrumbItem,
-    BreadcrumbLink,
-    BreadcrumbSeparator,
-} from '@chakra-ui/react'
+    BreadcrumbLink
+} from '@chakra-ui/react';
 import { ChevronRightIcon } from "@chakra-ui/icons";
-import { useRouter } from 'next/navigation'
-import { usePathname } from 'next/navigation'
+import { useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import IsAuth from "../authGard";
 import { SidebarNav } from "./sidebarNav";
 import { useFetchUserData } from "@/Services/Query/user";
@@ -47,11 +45,11 @@ function DashLayout({ children }) {
 
                                         <div className="flex items-center justify-between h-16">
                                             <div className=" flex items-center">
-                                                <Link className="text-white text-2xl" href="">360</Link>
+                                                <Link className="text-white text-2xl" href="/">Databoot.io</Link>
                                             </div>
                                             <div className="block">
                                                 <div className="flex items-center ml-4 md:ml-6">
-                                                    {/* <a href="https://github.com/Charlie85270/tail-kit" className="p-1 text-gray-400 rounded-full focus:outline-none hover:text-gray-200 focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
+                                                    {/* <a href="http://github.com/Charlie85270/tail-kit" className="p-1 text-gray-400 rounded-full focus:outline-none hover:text-gray-200 focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
                             <span className="sr-only">
                                 View github
                             </span>

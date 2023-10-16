@@ -1,5 +1,4 @@
 
-import axios from 'axios';
 import { back_api } from '../../enviro';
 import Axios from './interceptor';
 // import { axios } from 'axios';

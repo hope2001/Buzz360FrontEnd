@@ -23,7 +23,7 @@
 
 
 
-import axios from 'axios'
+import axios from 'axios';
 // import { toast } from 'react-toastify';
 import { Tokenn } from '../helpers/TokenKeeper';
 import { toast } from 'react-toastify';
@@ -43,7 +43,7 @@ Axios.interceptors.request.use(request => {
         console.log("INTERCEPTOR");
     if (Tokenn.checkToken()) {
         request.headers.Authorization = 'Bearer ' + Tokenn.getToken()
-        // request.headers.ContentType = 'application/json; charset=UTF-8':
+        // request.headers.ContentType = 'application/json; charSet=UTF-8':
     }}
 
     // request.headers.AccessControlAllowOrigin = api;

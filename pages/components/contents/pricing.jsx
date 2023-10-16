@@ -1,4 +1,3 @@
-import React from 'react';
 
 const Pricing = () => {
     const price = [1,2,3]

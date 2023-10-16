@@ -1,4 +1,3 @@
-import React from 'react';
 
 const CTASection = () => {
   return (
@@ -62,7 +61,7 @@ export default CTASection;
 //             <div className="flex items-center justify-between h-16 lg:h-20">
 //                 <div className="flex-shrink-0">
 //                     <a href="#" title="" className="flex">
-//                         <img className="w-auto h-8" src="https://cdn.rareblocks.xyz/collection/celebration/images/hero/2/logo.svg" alt="" />
+//                         <img className="w-auto h-8" src="http://cdn.rareblocks.xyz/collection/celebration/images/hero/2/logo.svg" alt="" />
 //                     </a>
 //                 </div>
 
@@ -125,7 +124,7 @@ export default CTASection;
 //                 </div>
 
 //                 <div>
-//                     <img className="w-full" src="https://cdn.rareblocks.xyz/collection/celebration/images/hero/2/hero-img.png" alt="" />
+//                     <img className="w-full" src="http://cdn.rareblocks.xyz/collection/celebration/images/hero/2/hero-img.png" alt="" />
 //                 </div>
 //             </div>
 //         </div>

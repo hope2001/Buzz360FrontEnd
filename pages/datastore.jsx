@@ -1,32 +1,23 @@
-import NavBar from "./components/partials/navbar";
-import Link from "next/link"
-import Sidebar from "./components/partials/sidebardash";
 import DashLayout from "./components/Layout/dashboardLayout";
-import { useEffect, useState } from "react"
-import { Button, ButtonGroup } from '@chakra-ui/react'
-import { Heading } from '@chakra-ui/react'
+import { useState } from "react";
+import { Button } from '@chakra-ui/react';
+import { Heading } from '@chakra-ui/react';
 
 import {
     Menu,
     MenuButton,
     MenuList,
-    MenuItem,
-    MenuItemOption,
-    MenuGroup,
-    MenuOptionGroup,
-    MenuDivider,
-} from '@chakra-ui/react'
-import { Spinner } from '@chakra-ui/react'
-import { useToast } from '@chakra-ui/react'
+    MenuItem, MenuGroup
+} from '@chakra-ui/react';
+import { Spinner } from '@chakra-ui/react';
+import { useToast } from '@chakra-ui/react';
 import { useFetchDatastore } from "@/Services/Query/datastorequery";
-import AddDatastore from "./components/modals/adddatastore";
 import { ManualClose } from "./components/modals/adddstor";
 import AddDstorefile from "./components/modals/adddatastorefile";
 import AddDstoreLink from "./components/modals/addLinkstorefile";
 import axios from "axios";
 import { collectionName, fileserverpath, iaapi, thisServer } from "@/Services/Requests/env";
 import { useFetchUserData } from "@/Services/Query/user";
-import LoadingP from "./components/partials/loadingpage";
 
 // import { adddatastorefile } from "./components/modals/adddatastorefile";
 // import { useFetchDatastore,useTrashResumeData } from '../Services/Query/agentquery';
@@ -156,7 +147,7 @@ function Datastore() {
                                                 <td className="py-3 px-6 text-left">
                                                     <div className="flex items-center">
                                                         {/* <div className="mr-2"> */}
-                                                        {/* <img className="w-6 h-6 rounded-full" src="https://randomuser.me/api/portraits/men/1.jpg" /> */}
+                                                        {/* <img className="w-6 h-6 rounded-full" src="http://randomuser.me/api/portraits/men/1.jpg" /> */}
                                                         {/* </div> */}
                                                         <span>  
                                                             {agent.description}

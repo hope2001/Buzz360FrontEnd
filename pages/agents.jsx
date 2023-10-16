@@ -1,27 +1,19 @@
-import NavBar from "./components/partials/navbar";
-import Link from "next/link"
-import Sidebar from "./components/partials/sidebardash";
+import Link from "next/link";
 import DashLayout from "./components/Layout/dashboardLayout";
-import { useEffect, useState } from "react"
-import { Button, ButtonGroup } from '@chakra-ui/react'
-import { Heading } from '@chakra-ui/react'
+import { useEffect, useState } from "react";
+import { Button } from '@chakra-ui/react';
+import { Heading } from '@chakra-ui/react';
 import {
-  Menu,
-  MenuButton,
-  MenuList,
-  MenuItem,
-  MenuItemOption,
-  MenuGroup,
-  MenuOptionGroup,
-  MenuDivider,
-} from '@chakra-ui/react'
+    Menu,
+    MenuButton,
+    MenuList,
+    MenuItem, MenuGroup, MenuDivider
+} from '@chakra-ui/react';
 
-import { useFetchAgentData,useTrashAgent,useTrashResumeData } from '../Services/Query/agentquery';
+import { useFetchAgentData } from '../Services/Query/agentquery';
 import { AddAgentModel } from "./components/modals/addAgent";
-import { DeployAgent } from "./components/modals/deployAgent";
+import { DeployAgent } from './components/modals/DeployAgent.1';
 import { DeleteThing } from "./components/modals/trashThing";
-import LoadingP from "./components/partials/loadingpage";
-import CodeEditor from "./components/partials/codeContainer";
 function Agents() {
     const [Agentitem, setAgentitem] = useState({})
     useEffect(() => {
@@ -108,7 +100,7 @@ function Agents() {
                                             <td className="py-3 px-6 text-left">
                                                 <div className="flex items-center">
                                                     {/* <div className="mr-2"> */}
-                                                        {/* <img className="w-6 h-6 rounded-full" src="https://randomuser.me/api/portraits/men/1.jpg" /> */}
+                                                        {/* <img className="w-6 h-6 rounded-full" src="http://randomuser.me/api/portraits/men/1.jpg" /> */}
                                                     {/* </div> */}
                                                     <span>  {agent.description}
                                                     </span>
@@ -119,9 +111,9 @@ function Agents() {
                                             </td>
                                             <td className="py-3 px-6 text-center">
                                                 <div className="flex items-center justify-center">
-                                                    {/* <img className="w-6 h-6 rounded-full border-gray-200 border transform hover:scale-125" src="https://randomuser.me/api/portraits/men/1.jpg" />
-                                                    <img className="w-6 h-6 rounded-full border-gray-200 border -m-1 transform hover:scale-125" src="https://randomuser.me/api/portraits/women/2.jpg" />
-                                                    <img className="w-6 h-6 rounded-full border-gray-200 border -m-1 transform hover:scale-125" src="https://randomuser.me/api/portraits/men/3.jpg" /> */}
+                                                    {/* <img className="w-6 h-6 rounded-full border-gray-200 border transform hover:scale-125" src="http://randomuser.me/api/portraits/men/1.jpg" />
+                                                    <img className="w-6 h-6 rounded-full border-gray-200 border -m-1 transform hover:scale-125" src="http://randomuser.me/api/portraits/women/2.jpg" />
+                                                    <img className="w-6 h-6 rounded-full border-gray-200 border -m-1 transform hover:scale-125" src="http://randomuser.me/api/portraits/men/3.jpg" /> */}
                                                      {agent.temperature}
                                                     <i className="bi bi-thermometer-sun text-yellow-600 mx-1"></i>
                                                 </div>

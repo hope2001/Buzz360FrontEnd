@@ -1,6 +1,4 @@
 // import DashboardLayout from "./components/Layout/dashboardLayout";
-import { Textarea, Toast } from '@chakra-ui/react'
-import { Button, ButtonGroup } from '@chakra-ui/react'
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import DashboardLayout from '../components/Layout/dashboardLayout';
@@ -8,7 +6,7 @@ import { useGetOneDatastore } from '@/Services/Query/datastorequery';
 import { useRouter } from 'next/router';
 import { collectionName, iaapi } from '@/Services/Requests/env';
 import axios from 'axios';
-import { Spinner } from '@chakra-ui/react'
+import { Spinner } from '@chakra-ui/react';
 function Chat() {
     const [dstore, setdstore] = useState('');
     const [Jsondata, setJsonData] = useState([]);
@@ -82,7 +80,7 @@ function Chat() {
             //   const response = await axios.post(iaapi+"/chatbot", body);
             console.log(response.data);
             const userquest = { from: "Humain", message: data.query };
-            const iares = { from: "IA", message: response.data.bot_response.answer };
+            const iares = { from: "IA", message: response.data.bot_response };
             setchatLoad(false)
             setconverse([...converse,userquest, iares ])
             
@@ -93,7 +91,7 @@ function Chat() {
     };
     return (
         <DashboardLayout>
-<div className="flex-1 p:2 sm:p-6 justify-between flex flex-col h-full bg-gray-800 rounded-lg">
+<div className="p:2 sm:p-6 justify-betwee fle flex-col h-full bg-gray-700 rounded-lg">
    <div className="flex sm:items-center justify-between py-3 border-b-2 border-gray-200">
       <div className="relative flex items-center space-x-4">
          <div className="relative">
@@ -102,7 +100,7 @@ function Chat() {
                   <circle cx="8" cy="8" r="8" fill="currentColor"></circle>
                </svg>
             </span>
-         <img src="https://images.unsplash.com/photo-1549078642-b2ba4bda0cdb?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=3&amp;w=144&amp;h=144" alt="" className="w-10 sm:w-16 h-10 sm:h-16 rounded-full"/>
+         <img src="http://images.unsplash.com/photo-1549078642-b2ba4bda0cdb?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=3&amp;w=144&amp;h=144" alt="" className="w-10 sm:w-16 h-10 sm:h-16 rounded-full"/>
          </div>
          <div className="flex flex-col leading-tight">
             <div className="text-2xl mt-1 flex items-center">
@@ -130,7 +128,7 @@ function Chat() {
          </button>
       </div>
    </div>
-   <div id="messages" className="flex flex-col space-y-4 p-3 overflow-y-auto scrollbar-thumb-blue scrollbar-thumb-rounded scrollbar-track-blue-lighter scrollbar-w-2 scrolling-touch">
+   <div id="messages" className="flex flex-col space-y-4 p-3 overflow-y-auto scrollbar-thumb-blue scrollbar-thumb-rounded scrollbar-track-blue-lighter scrollbar-w-2 scrolling-touch h-screen">
       
      { converse?.map((item, index) => (item?.from == "IA" ?
      <div key={index} className="chat-message">
@@ -140,7 +138,7 @@ function Chat() {
             </div>
             <i className="bi bi-robot px-2 py-1 bg-gray-700  rounded-md align-middle mb-auto  text-white mx-2" style={{fontSize:"20px"}}></i>
                        
-            {/* <img src="https://images.unsplash.com/photo-1549078642-b2ba4bda0cdb?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=3&amp;w=144&amp;h=144" alt="My profile" className="w-6 h-6 rounded-full order-1"/> */}
+            {/* <img src="http://images.unsplash.com/photo-1549078642-b2ba4bda0cdb?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=3&amp;w=144&amp;h=144" alt="My profile" className="w-6 h-6 rounded-full order-1"/> */}
          </div>
       </div>
       :
@@ -149,7 +147,7 @@ function Chat() {
             <div style={{fontSize:"20px"}} className="flex flex-col space-y-2  max-w-xs mx-2 order-1 items-end">
                <div><span className="px-4 py-2 rounded-lg inline-block rounded-br-none bg-blue-600 text-white ">{item.message}</span></div>
             </div>
-            <img src="https://images.unsplash.com/photo-1590031905470-a1a1feacbb0b?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=3&amp;w=144&amp;h=144" alt="My profile" className="w-6 h-6 rounded-full order-2"/>
+            <img src="http://images.unsplash.com/photo-1590031905470-a1a1feacbb0b?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=3&amp;w=144&amp;h=144" alt="My profile" className="w-6 h-6 rounded-full order-2"/>
          </div>
       </div>))}
 

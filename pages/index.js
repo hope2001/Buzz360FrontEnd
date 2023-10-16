@@ -1,11 +1,9 @@
-import Image from 'next/image'
 import { Inter } from 'next/font/google'
 import NavBar from './components/partials/navbar'
 import Banner from './components/contents/banner'
 import Features from './components/contents/features'
 import TestimonialSection from './components/contents/testimonial'
 import Pricing from './components/contents/pricing'
-import ClientsCarousel from './components/contents/client'
 import SupportSection from './components/contents/contact'
 import CTASection from './components/contents/calltoa'
 import NewsletterSection from './components/partials/newletter'
@@ -39,7 +37,7 @@ export default function Home() {
     //     <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
     //       <a
     //         className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-    //         href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
+    //         href="http://vercel.com?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
     //         target="_blank"
     //         rel="noopener noreferrer"
     //       >
@@ -69,7 +67,7 @@ export default function Home() {
 
     //   <div className="mb-32 grid text-center lg:mb-0 lg:grid-cols-4 lg:text-left">
     //     <a
-    //       href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
+    //       href="http://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
     //       className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
     //       target="_blank"
     //       rel="noopener noreferrer"
@@ -86,7 +84,7 @@ export default function Home() {
     //     </a>
 
     //     <a
-    //       href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
+    //       href="http://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
     //       className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
     //       target="_blank"
     //       rel="noopener noreferrer"
@@ -103,7 +101,7 @@ export default function Home() {
     //     </a>
 
     //     <a
-    //       href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
+    //       href="http://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
     //       className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
     //       target="_blank"
     //       rel="noopener noreferrer"
@@ -120,7 +118,7 @@ export default function Home() {
     //     </a>
 
     //     <a
-    //       href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
+    //       href="http://vercel.com/new?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
     //       className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
     //       target="_blank"
     //       rel="noopener noreferrer"

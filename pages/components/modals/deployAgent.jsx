@@ -1,33 +1,17 @@
 import {
-  Drawer,
-  DrawerBody,
-  DrawerFooter,
-  DrawerHeader,
-  DrawerOverlay,
-  DrawerContent,
-  DrawerCloseButton,
-  Button,
-  ButtonGroup,
-  Input,
-  NumberInput,
-  NumberInputField,
-  NumberInputStepper,
-  NumberIncrementStepper,
-  NumberDecrementStepper,
-  Slider,
-  SliderTrack,
-  SliderFilledTrack,
-  SliderThumb,
-  Select,
-  Box,
+    Drawer,
+    DrawerBody, DrawerHeader,
+    DrawerOverlay,
+    DrawerContent,
+    DrawerCloseButton, Box
 } from '@chakra-ui/react'
 
 import {
-  Accordion,
-  AccordionItem,
-  AccordionButton,
-  AccordionPanel,
-  AccordionIcon,
+    Accordion,
+    AccordionItem,
+    AccordionButton,
+    AccordionPanel,
+    AccordionIcon,
 } from '@chakra-ui/react'
 
 import { useDisclosure } from '@chakra-ui/react'
@@ -35,19 +19,13 @@ import { useRef } from 'react'
 
 
 
-import Link from "next/link"
 import { useEffect } from "react"
-import { Heading } from '@chakra-ui/react'
-import { Spinner } from '@chakra-ui/react'
 import { useToast } from '@chakra-ui/react'
-import { useFetchAgentData, useAddAgent } from '../../../Services/Query/agentquery';
-import { useForm } from "react-hook-form";
-import { useState } from "react";
+import { useFetchAgentData, useAddAgent } from '../../../Services/Query/agentquery'
+import { useForm } from "react-hook-form"
+import { useState } from "react"
 import { useRouter } from 'next/navigation'
-import { useFetchDatastore } from "@/Services/Query/datastorequery";
-import axios from "axios";
-import { collectionName, iaapi, prompt } from "@/Services/Requests/env";
-import { ManualClose } from './adddstor'
+import { useFetchDatastore } from "@/Services/Query/datastorequery"
 import CodeEditor from '../partials/codeContainer'
 
 
@@ -178,7 +156,7 @@ export function DeployAgent({ data }) {
   const handleChange = (value) => setValue(value)
   const front = `<html lang="en">
     <head>
-      <meta charset="UTF-8"/>
+      <meta charSet="UTF-8"/>
       <title>Chatbot Plugin</title>
     </head>
     <body>
@@ -258,45 +236,18 @@ export function DeployAgent({ data }) {
                 <AccordionPanel pb={4}>
                   <CodeEditor>
                     {/* {front} */}
-                    {ui}
+                    {/* {ui} */}
+                  let ux = '<script src="./widgt.js"></script>'
+                  ux += '<script>'
+                        {/* let data = {"groupid": "code__1"} */}
+                        ux += 'DataBootChatBotUi(data)'
+                        ux += '</script>'
+                        {ux}
                   </CodeEditor>
 
                 </AccordionPanel>
               </AccordionItem>
 
-              <AccordionItem>
-                <h2>
-                  <AccordionButton className='bg-gray-800 text-white'>
-                    <Box as="span" flex='1' textAlign='left'>
-                      plugin.js
-                    </Box>
-                    <AccordionIcon />
-                  </AccordionButton>
-                </h2>
-                <AccordionPanel pb={4}>
-                  <code>
-                    <pre>
-
-                      {plug}
-                    </pre>
-                  </code>
-                </AccordionPanel>
-              </AccordionItem>
-              <AccordionItem>
-                <h2>
-                  <AccordionButton className='bg-gray-800 text-white'>
-                    <Box as="span" flex='1' textAlign='left'>
-                      Agent Api
-                    </Box>
-                    <AccordionIcon />
-                  </AccordionButton>
-                </h2>
-                <AccordionPanel pb={4}>
-                  <CodeEditor>
-                    
-                  </CodeEditor>
-                </AccordionPanel>
-              </AccordionItem>
             </Accordion>
 
 
@@ -388,8 +339,8 @@ const ui = `
 `
 
 const uicss = `
-@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,600");
-@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,600");
+@import url("http://fonts.googleapis.com/css?family=Open+Sans:300,600");
+@import url("http://fonts.googleapis.com/css?family=Open+Sans:300,600");
 .chatbot {
   display: none;
   position: fixed;
@@ -917,7 +868,7 @@ const uicss = `
 }
 
 body {
-  background: url("https://images.unsplash.com/photo-1464823063530-08f10ed1a2dd?dpr=1&auto=compress,format&fit=crop&w=1199&h=799&q=80&cs=tinysrgb&crop=&bg=") no-repeat center center;
+  background: url("http://images.unsplash.com/photo-1464823063530-08f10ed1a2dd?dpr=1&auto=compress,format&fit=crop&w=1199&h=799&q=80&cs=tinysrgb&crop=&bg=") no-repeat center center;
   background-size: cover;
   height: 1000px;
   font-family: "Open Sans", sans-serif;
@@ -988,7 +939,7 @@ strong {
 }
 
 body {
-  background: url("https://images.unsplash.com/photo-1464823063530-08f10ed1a2dd?dpr=1&auto=compress,format&fit=crop&w=1199&h=799&q=80&cs=tinysrgb&crop=&bg=") no-repeat center center;
+  background: url("http://images.unsplash.com/photo-1464823063530-08f10ed1a2dd?dpr=1&auto=compress,format&fit=crop&w=1199&h=799&q=80&cs=tinysrgb&crop=&bg=") no-repeat center center;
   background-size: cover;
   height: 1000px;
   font-family: "Open Sans", sans-serif;

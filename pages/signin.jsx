@@ -3,8 +3,8 @@ import { useForm } from 'react-hook-form';
 import { toast } from "react-toastify";
 // import { AuthSys } from './../../../Services/Requests/Auth';
 // import { Tokenn } from './../../../Services/helpers/TokenKeeper';
-import { useRouter } from 'next/navigation'
-import { usePathname } from 'next/navigation'
+import { useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import NavBar from "./components/partials/navbar";
 import { AuthSys } from "@/Services/Requests/Auth";
 import { Tokenn } from "@/Services/helpers/TokenKeeper";

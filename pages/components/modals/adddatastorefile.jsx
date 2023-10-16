@@ -1,11 +1,9 @@
-import React from 'react'
-import { collectionName, iaapi, thisServer } from '@/Services/Requests/env'
+import { collectionName, iaapi, thisServer } from '@/Services/Requests/env';
 import axios from 'axios';
 import { useForm } from "react-hook-form";
-import { useState, useEffect } from "react";
-import { useRouter } from 'next/navigation'
+import { useState } from "react";
 import { useAddFileToDatastore } from '@/Services/Query/datastorequery';
-import { useToast } from '@chakra-ui/react'
+import { useToast } from '@chakra-ui/react';
 import { useFetchUserData } from '@/Services/Query/user';
 import Axios from '@/Services/Requests/interceptor';
 function AddDstorefile({ data, show, setShow }) {
@@ -159,7 +157,7 @@ function AddDstorefile({ data, show, setShow }) {
                     <span> {ftype.label} </span>
 
                   </label>
-                  <input accept='.pdf, .csv, .txt, .docx, .pptx' className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500" placeholder='https://www.w3schools.com/'
+                  <input accept='.pdf, .csv, .txt, .docx, .pptx' className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500" placeholder='http://www.w3schools.com/'
                     type={ftype?.type} id={'file'} multiple {...register(ftype?.type, { required: true })} />
                   {errors.data && <span className="text-sm"> Donnée requise</span>}
                 </div>

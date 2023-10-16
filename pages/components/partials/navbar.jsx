@@ -1,10 +1,10 @@
 import { Tokenn } from '@/Services/helpers/TokenKeeper';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation'
+import { usePathname } from 'next/navigation';
 import React, { useState } from 'react';
-import { useEffect } from "react"
-import { useRouter } from 'next/navigation'
-import { useToast } from '@chakra-ui/react'
+import { useEffect } from "react";
+import { useRouter } from 'next/navigation';
+import { useToast } from '@chakra-ui/react';
 
 
 
@@ -74,7 +74,7 @@ const NavBar = () => {
         <div className="w-full lg:w-1/4 flex items-center justify-between">
           <Link href="/" className="text-white font-bold text-2xl">
             {/* <img src="images/logo.svg" alt="Logo" /> */}
-            Databerry 360
+            Databoot.io
           </Link>
 
           <button

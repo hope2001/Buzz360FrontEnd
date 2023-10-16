@@ -1,19 +1,15 @@
-import NavBar from "./components/partials/navbar";
-import Link from "next/link"
-import Sidebar from "./components/partials/sidebardash";
+import Link from "next/link";
 import DashLayout from "./components/Layout/dashboardLayout";
-import { useEffect } from "react"
-import { Button, ButtonGroup } from '@chakra-ui/react'
-import { Heading } from '@chakra-ui/react'
-import { Spinner } from '@chakra-ui/react'
-import { useToast } from '@chakra-ui/react'
-import { useFetchAgentData,useAddAgent } from '../Services/Query/agentquery';
+import { useEffect } from "react";
+import { Button } from '@chakra-ui/react';
+import { Heading } from '@chakra-ui/react';
+import { Spinner } from '@chakra-ui/react';
+import { useToast } from '@chakra-ui/react';
+import { useFetchAgentData, useAddAgent } from '../Services/Query/agentquery';
 import { useForm } from "react-hook-form";
 import { useState } from "react";
-import { useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation';
 import { useFetchDatastore } from "@/Services/Query/datastorequery";
-import axios from "axios";
-import { collectionName, iaapi } from "@/Services/Requests/env";
 function AddAgents() {
   const router = useRouter()
   const toast = useToast()
@@ -138,7 +134,7 @@ function AddAgents() {
              
                 {/* <!-- component --> */}
                 {/* <!-- component --> */}
-{/* <script src="https://cdn.tailwindcss.com"></script> */}
+{/* <script src="http://cdn.tailwindcss.com"></script> */}
 {/* <body className="bg-gray-100"> */}
   <div className="container mx-auto py-8">
     <h1 className="text-2xl font-bold mb-6 text-center"></h1>

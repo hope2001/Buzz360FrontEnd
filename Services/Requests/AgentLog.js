@@ -3,7 +3,7 @@ import Axios from './interceptor';
 // import { axios } from 'axios';
 // import axios from "axios";
 // import axios from "axios";
-const apip = "http://localhost:3500"
+// const apip = "http://localhost:3500"
 
 /**
  * Connexion vers l'API
