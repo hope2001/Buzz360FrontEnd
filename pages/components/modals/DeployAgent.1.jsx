@@ -203,7 +203,7 @@ export function DeployAgent({ data }) {
           <DrawerHeader> Déployer l'Agent </DrawerHeader>
 
           <DrawerBody className="bg-purple-20">
-            {JSON.stringify(data)}
+            {/* {JSON.stringify(data)} */}
 
 
             <Accordion defaultIndex={[0]} allowMultiple>
@@ -219,12 +219,17 @@ export function DeployAgent({ data }) {
                 <AccordionPanel pb={4}>
                   <CodeEditor>
                     {/* {front} */}
-                    {ui}
+                    {`
+                      <script src="./widgt.js"></script>
+                      <script>
+                        let data = {groupid: "MyDatastore__1"}
+                        DataBootChatBotUi(data)
+                      </script>`}
                   </CodeEditor>
 
                 </AccordionPanel>
               </AccordionItem>
-
+{/* 
               <AccordionItem>
                 <h2>
                   <AccordionButton className='bg-gray-800 text-white'>
@@ -257,7 +262,7 @@ export function DeployAgent({ data }) {
 
                   </CodeEditor>
                 </AccordionPanel>
-              </AccordionItem>
+              </AccordionItem> */}
             </Accordion>
 
 
