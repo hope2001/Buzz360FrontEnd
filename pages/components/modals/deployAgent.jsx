@@ -235,8 +235,6 @@ export function DeployAgent({ data }) {
                 </h2>
                 <AccordionPanel pb={4}>
                   <CodeEditor>
-                    {/* {front} */}
-                    {/* {ui} */}
                   let ux = '<script src="./widgt.js"></script>'
                   ux += '<script>'
                         {/* let data = {"groupid": "code__1"} */}

@@ -211,7 +211,7 @@ export function DeployAgent({ data }) {
                 <h2>
                   <AccordionButton className='bg-gray-800 text-white'>
                     <Box as="span" flex='1' textAlign='left'>
-                      Chatbot Front view
+                      Chatbot Front view{JSON.stringify(data)}
                     </Box>
                     <AccordionIcon />
                   </AccordionButton>
@@ -219,8 +219,9 @@ export function DeployAgent({ data }) {
                 <AccordionPanel pb={4}>
                   <CodeEditor>
                     {/* {front} */}
+                    {/*  */}
                     {`
-                      <script src="./widgt.js"></script>
+                      <script src="https://databoot.io/plugins/widgt.js></script>
                       <script>
                         let data = {groupid: "MyDatastore__1"}
                         DataBootChatBotUi(data)
